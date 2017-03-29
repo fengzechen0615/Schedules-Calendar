@@ -34,33 +34,29 @@ public class UI extends Application{
 	
 	@Override
 	public void start(Stage primaryStage) {
-		//HBox h2box = add2HBox(addgp2());
-		//h2box.setMaxWidth(480);
 		table=setTable();
 		
 		border.setLeft(table);;
 		border.setBottom(addFlowPane());		
 		border.setTop(addgp());
-		border.setRight(addgd2());
+		border.setRight(addflowpane2());
 
 		primaryStage.setTitle("Schedules Calendar");
 		Scene scene = new Scene(border, 800, 600);
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
-	
-	private GridPane addgd2() {
-		GridPane grid = new GridPane();
-		grid.setVgap(10);
-		grid.setHgap(10);
-		grid.setPadding(new Insets(0, 10, 0, 10));
 		
-		Label sp = new Label("Sum up");
-		grid.add(sp, 10, 0);
+	private FlowPane addflowpane2() {
+		FlowPane flow = new FlowPane();
+		flow.setPadding(new Insets(5));
+		flow.setPrefWidth(330);
 		
-		//grid.setGridLinesVisible(true);
+		Label sum = new Label("sum");
+		sum.setMaxWidth(330);
+		flow.getChildren().add(sum);
 		
-		return grid;
+		return flow;
 	}
 	
 	private FlowPane addFlowPane() {
@@ -102,71 +98,6 @@ public class UI extends Application{
 		return flow;
 	}
 
-	/*private HBox add2HBox() {
-		HBox hbox=new HBox();
-		final TextField addTime=new TextField();
-		addTime.setPromptText("Time");
-		addTime.setMaxWidth(60);
-		
-		final TextField addCourse=new TextField();
-		addCourse.setPromptText("Course");
-		addCourse.setPrefWidth(180);
-		
-		final TextField addThings=new TextField();
-		addThings.setPromptText("Things");
-		addThings.setPrefWidth(180);
-		
-		final Button addButton = new Button("Add");
-		addButton.setPrefWidth(50);
-		addButton.setOnAction((ActionEvent e)->
-		{
-			data.add(new Staff(addTime.getText(),addCourse.getText(),addThings.getText()));
-			addTime.clear();
-			addCourse.clear();
-			addThings.clear();
-			
-		});
-		hbox.getChildren().addAll(addTime,addCourse,addThings,addButton);
-		hbox.setSpacing(2);
-		return hbox;
-	}*/
-	/*private GridPane addgp2() {
-		
-		GridPane grid = new GridPane();
-		grid.setHgap(4);
-		grid.setVgap(4);
-		grid.setPadding(new Insets(0, 5, 5, 5));
-		
-		final TextField addTime=new TextField();
-		addTime.setPromptText("Time");
-		addTime.setMaxWidth(60);
-		grid.add(addTime, 0, 1);
-		
-		final TextField addCourse=new TextField();
-		addCourse.setPromptText("Course");
-		addCourse.setPrefWidth(180);
-		grid.add(addCourse, 0, 2);
-		
-		final TextField addThings=new TextField();
-		addThings.setPromptText("Things");
-		addThings.setPrefWidth(180);
-		grid.add(addThings, 0, 3);
-		
-		final Button addButton = new Button("Add");
-		addButton.setPrefWidth(50);
-		grid.add(addTime, 0, 4);
-		
-		addButton.setOnAction((ActionEvent e)->
-		{
-			data.add(new Staff(addTime.getText(),addCourse.getText(),addThings.getText()));
-			addTime.clear();
-			addCourse.clear();
-			addThings.clear();
-			
-		});
-		
-		return grid;
-	}*/
 	
 	private GridPane addgp() {
 		GridPane grid = new GridPane(); 
@@ -252,30 +183,7 @@ public class UI extends Application{
 		
 		return table;
 	}
-	
-
-	/*private HBox addHBox() {
-		HBox hbox = new HBox();
-		hbox.setPadding(new Insets(10, 20, 10, 240));
-		hbox.setSpacing(10);
 		
-		Button day = new Button("Day");
-		day.setPrefSize(100, 20);
-		
-		Button week = new Button("Week");
-		week.setPrefSize(100, 20);
-		
-		Button month = new Button("Month");
-		month.setPrefSize(100, 20);
-		
-		date = new DatePicker();
-		date.setValue(LocalDate.now());	
-    	
-		hbox.getChildren().addAll(day,week,month,date);
-		
-        return hbox;
-	}*/
-	
 	public static void main(String[] args) {
 		Locale.setDefault(Locale.CHINA);
 		launch(args);
