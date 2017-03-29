@@ -1,4 +1,4 @@
-package time;
+package gettime;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
