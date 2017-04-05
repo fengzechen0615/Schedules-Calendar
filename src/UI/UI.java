@@ -35,8 +35,13 @@ public class UI extends Application{
 	@Override
 	public void start(Stage primaryStage) {
 		table=setTable();
+		weekTable wTable=new weekTable();
+		TableView<Object> table2=wTable.setWeekTable();
+		table2.setVisible(true);
+		border.setLeft(table2);
 		
-		border.setLeft(table);;
+		table.setVisible(false);
+		
 		border.setBottom(addFlowPane());		
 		border.setTop(addgp());
 		border.setRight(addflowpane2());
@@ -106,6 +111,7 @@ public class UI extends Application{
 		grid.setPadding(new Insets(0, 10, 10, 10));
 		
 		Button day = new Button("Day");
+		
 		day.setPrefSize(80, 20);
 	    grid.add(day,15, 1);
 	    
