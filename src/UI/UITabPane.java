@@ -8,6 +8,7 @@ public class UITabPane {
 	public static TabPane getTabPane() {
 		TabPane tab = new TabPane();
 		tab.setTabClosingPolicy(TabClosingPolicy.UNAVAILABLE);
+		tab.setTabMinWidth(100);
 		
 		Tab tab_day = new Tab("Day");
 		tab_day.setContent(CalendarDay.getDay());
