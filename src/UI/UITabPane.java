@@ -16,7 +16,7 @@ public class UITabPane {
 		//tab_week.setContent(CalendarWeek.getWeek());
 		
 		Tab tab_month = new Tab("Month");
-		//tab_month.setContent(CalendarMonth.getMonth());
+		tab_month.setContent(CalendarMonth.getMonth());
 		
 		tab.getTabs().add(tab_day);
 		tab.getTabs().add(tab_week);
