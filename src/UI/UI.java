@@ -15,6 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellEditEvent;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -28,6 +29,7 @@ public class UI extends Application{
 	
 	private DatePicker date;
 	private  TableView<Staff> table= new TableView<>();
+	private  TableView<Course> table2= new TableView<>();
 	private final ObservableList<Staff> data =FXCollections.observableArrayList(
 			new Staff("8:00","Math","Worksheet"));
 	private BorderPane border = new BorderPane();
@@ -189,6 +191,48 @@ public class UI extends Application{
 		
 		return table;
 	}
+	
+	private TableView<Course> WeekPage()
+	{
+		table2.setEditable(true);
+		Callback<TableColumn<Staff, String>, 
+		TableCell<Staff, String>> cellFactory= (TableColumn<Staff, String> p) -> new EditngCell();
+		table2.setPrefSize(640, 480);
+		TableRow<Course> Timerow=new TableRow<>();
+		Timerow.setPrefSize(70, 60);
+		
+		TableColumn<Course,String> Mon=new TableColumn<>("Monday");
+		Mon.setPrefWidth(60);
+		
+		TableColumn<Course,String> Tue=new TableColumn<>("Tuesday");
+		Tue.setPrefWidth(60);
+		
+		TableColumn<Course,String> Wed=new TableColumn<>("Wednesday");
+		Wed.setPrefWidth(60);
+		
+		
+		TableColumn<Course,String> Thur=new TableColumn<>("Thursday");
+		Thur.setPrefWidth(60);
+		
+		TableColumn<Course,String> Fri=new TableColumn<>("Friday");
+		Fri.setPrefWidth(60);
+		
+		TableColumn<Course,String> Sat=new TableColumn<>("Saturday");
+		Sat.setPrefWidth(60);
+		
+		TableColumn<Course,String> Sun=new TableColumn<>("Sunday");
+		Sun.setPrefWidth(60);
+		
+		table2.getColumns().addAll(Mon,Tue,Wed,Thur,Fri,Sat,Sun);
+		
+		
+		
+		
+		
+		return table2;
+	}
+	
+	
 		
 	public static void main(String[] args) {
 		Locale.setDefault(Locale.CHINA);
