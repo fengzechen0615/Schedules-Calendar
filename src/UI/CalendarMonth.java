@@ -19,7 +19,37 @@ public class CalendarMonth {
 	private static Button next_month=new Button("Next Month");
 	private static TextField text_year=new TextField(""+calendar.getYear());
 	private static TextField text_month=new TextField(""+calendar.getMonth());
+	private static TextField text_day=new TextField(""+calendar.getDay());
 	private static Label showdate=new Label(calendar.getYear() + "/" + calendar.getMonth() + "/" + calendar.getDay());
+	
+	public static Button get1(){
+		return pre_year;
+	}
+	
+	public static Button get2(){
+		return pre_month;
+	}
+	
+	public static TextField get3(){
+		return text_year;
+	}
+	
+	public static TextField get4(){
+		return text_month;
+	}
+	
+	public static TextField get5(){
+		return text_day;
+	}
+	
+	public static Button get6(){
+		return next_month;
+	}
+	
+	public static Button get7(){
+		return next_year;
+	}
+	
 	
 	public static BorderPane getMonth() {
 		BorderPane borderPane = new BorderPane();
@@ -141,6 +171,12 @@ public class CalendarMonth {
             showdate.setText(calendar.getYear() + "/" + calendar.getMonth() + "/" + calendar.getDay() + "/");
         });
 			
+        text_day.setOnAction(event -> {//输入月份
+            int day = Integer.parseInt(text_day.getText());
+			calendar.setDay(day);
+            calendar.setMonthPage();
+            showdate.setText(calendar.getYear() + "/" + calendar.getMonth() + "/" + calendar.getDay() + "/");
+        });
 		return gridMonth;
 	}
 
