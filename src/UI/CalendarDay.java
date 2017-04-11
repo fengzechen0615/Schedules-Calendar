@@ -19,7 +19,30 @@ import javafx.util.Callback;
 public class CalendarDay {
 	
 	private static TableView<Staff> table= new TableView<>();
-	private final static ObservableList<Staff> data =FXCollections.observableArrayList(new Staff("8:00","Math","Worksheet"));
+	private final static ObservableList<Staff> data =FXCollections.observableArrayList(new Staff("00:00"," "," "),
+			new Staff("01:00"," "," "),
+			new Staff("02:00"," "," "),
+			new Staff("03:00"," "," "),
+			new Staff("04:00"," "," "),
+			new Staff("05:00"," "," "),
+			new Staff("06:00"," "," "),
+			new Staff("07:00"," "," "),
+			new Staff("08:00"," "," "),
+			new Staff("09:00"," "," "),
+			new Staff("10:00"," "," "),
+			new Staff("11:00"," "," "),
+			new Staff("12:00"," "," "),
+			new Staff("13:00"," "," "),
+			new Staff("14:00"," "," "),
+			new Staff("15:00"," "," "),
+			new Staff("16:00"," "," "),
+			new Staff("17:00"," "," "),
+			new Staff("18:00"," "," "),
+			new Staff("19:00"," "," "),
+			new Staff("20:00"," "," "),
+			new Staff("21:00"," "," "),
+			new Staff("22:00"," "," "),
+			new Staff("23:00"," "," "));
 	
 	public static BorderPane getDay() {
 		BorderPane borderPane = new BorderPane();
