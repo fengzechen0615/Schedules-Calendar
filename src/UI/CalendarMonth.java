@@ -22,31 +22,31 @@ public class CalendarMonth {
 	private static TextField text_day=new TextField(""+calendar.getDay());
 	private static Label showdate=new Label(calendar.getYear() + "/" + calendar.getMonth() + "/" + calendar.getDay());
 	
-	public static Button get1(){
+	public static Button getpreyear(){
 		return pre_year;
 	}
 	
-	public static Button get2(){
+	public static Button getpremonth(){
 		return pre_month;
 	}
 	
-	public static TextField get3(){
+	public static TextField gettextyear(){
 		return text_year;
 	}
 	
-	public static TextField get4(){
+	public static TextField gettextmonth(){
 		return text_month;
 	}
 	
-	public static TextField get5(){
+	public static TextField gettextday(){
 		return text_day;
 	}
 	
-	public static Button get6(){
+	public static Button getnextmonth(){
 		return next_month;
 	}
 	
-	public static Button get7(){
+	public static Button getnextyear(){
 		return next_year;
 	}
 	
@@ -55,42 +55,22 @@ public class CalendarMonth {
 		BorderPane borderPane = new BorderPane();
 		
 		borderPane.setCenter(AddStackPane());
-		borderPane.setTop(addFlowPane());
-		borderPane.setBottom(addFlowPane2());
+		borderPane.setBottom(addFlowPane());
 		
 		return borderPane;
 	}
 	
-	private static FlowPane addFlowPane2() {
-		FlowPane flowPane = new FlowPane();
-		flowPane.setPadding(new Insets(5,0,5,0));
-		flowPane.setHgap(5);
-		flowPane.setPrefWrapLength(600);
-		
-		showdate.setAlignment(Pos.CENTER);
-		showdate.setPrefWidth(280);
-        showdate.setPrefHeight(25);
-		
-		text_year.setPrefWidth(100);
-		text_month.setPrefWidth(100);
-		
-		flowPane.getChildren().addAll(text_year,text_month,showdate);
-		
-		return flowPane;
-	}
-
 	private static FlowPane addFlowPane() {
 		FlowPane flowPane = new FlowPane();
 		flowPane.setPadding(new Insets(5,0,5,0));
 		flowPane.setHgap(5);
 		flowPane.setPrefWrapLength(600);
 		
-		pre_year.setPrefWidth(100);
-		next_year.setPrefWidth(100);
-		pre_month.setPrefWidth(100);
-		next_month.setPrefWidth(100);
+		showdate.setAlignment(Pos.CENTER);
+		showdate.setPrefWidth(800);
+        showdate.setPrefHeight(25);
 		
-		flowPane.getChildren().addAll(pre_year,next_year,pre_month,next_month);
+		flowPane.getChildren().add(showdate);
 		
 		return flowPane;
 	}
@@ -105,7 +85,7 @@ public class CalendarMonth {
 		calendar.setOnMouseClicked(event->{
 			double x=event.getX();
 			double y=event.getY();
-			int day = (int) y / 63 * 7 + (int) x / 111 + 1 - 7 - calendar.getFirstDayOfWeek();
+			int day = (int) y / 70 * 7 + (int) x / 111 + 1 - 7 - calendar.getFirstDayOfWeek();
             if (day > 0 && day < 32) {
                 calendar.setDay(day);
                 calendar.setMonthPage();

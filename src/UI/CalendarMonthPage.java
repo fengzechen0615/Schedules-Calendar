@@ -73,13 +73,13 @@ public class CalendarMonthPage extends Pane {
             if (i == 6) label.setTextFill(Color.BLUE);
             calendar_Panel.add(label, i, 0);
             calendar_Panel.getColumnConstraints().add(new ColumnConstraints(111));
-            calendar_Panel.getRowConstraints().add(new RowConstraints(63));
+            calendar_Panel.getRowConstraints().add(new RowConstraints(70));
             GridPane.setHalignment(label, HPos.CENTER);
             calendar_Panel.setGridLinesVisible(false);
         }
         for (int j = 0; j < finalday; j++) {
             Label label = new Label(j + 1 + "");
-            label.setPrefSize(111, 63);
+            label.setPrefSize(111, 70);
             label.setAlignment(Pos.CENTER);
             if (j + 1 == day) {
                 label.setFont(Font.font("Cooper Black", FontWeight.BOLD, 20));
