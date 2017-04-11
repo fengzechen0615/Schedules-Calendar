@@ -17,7 +17,7 @@ public class Main extends Application{
 		root.getChildren().add(UITabPane.getTabPane());
 		
 		primaryStage.setScene(new Scene(root, 800, 600));
-		primaryStage.setTitle("Schedules-Calendar");
+		primaryStage.setTitle("Plus1second");
 		primaryStage.setResizable(false);
 		primaryStage.show();
 		

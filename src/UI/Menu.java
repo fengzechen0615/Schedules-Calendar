@@ -1,14 +1,17 @@
 package UI;
 
+import javafx.application.Platform;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 
 public class Menu {
 	public static MenuButton getChoice() {
-		MenuButton menuButton = new MenuButton("Schedules Calendar");
+		MenuButton menuButton = new MenuButton("Plus1second");
 		
-		MenuItem about = new MenuItem("About Schedules Calendar");
-		MenuItem exit = new MenuItem("Exit Schedules Calendar");
+		MenuItem about = new MenuItem("About Plus1second");
+		MenuItem exit = new MenuItem("Exit Plus1second");	
+
+		exit.setOnAction(ActionEvent -> Platform.exit());
 		
 		menuButton.getItems().addAll(about, exit);
 		
