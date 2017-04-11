@@ -114,7 +114,13 @@ public class CalendarMonth {
         pre_month.setOnAction(event -> {//last month
             int month = calendar.getMonth() - 1;
             if (month < 1) {
-                ;
+                calendar.setMonth(12);
+                month=12;
+                text_month.setText("12");
+                calendar.setYear(calendar.getYear()-1);
+                calendar.setMonthPage();
+                text_year.setText(calendar.getYear()+"");
+                showdate.setText(calendar.getYear() + "/" + calendar.getMonth() + "/" + calendar.getDay());
             } else {
                 calendar.setMonth(month);
                 text_month.setText(month + "");
@@ -127,7 +133,14 @@ public class CalendarMonth {
         next_month.setOnAction(event -> {//下一月
             int month = calendar.getMonth() + 1;
             if (month > 12) {
-                ;
+            	calendar.setMonth(1);
+            	month=1;
+            	text_month.setText("1");
+            	
+                calendar.setYear(calendar.getYear()+1);
+                text_year.setText(calendar.getYear()+"");
+                calendar.setMonthPage();
+                showdate.setText(calendar.getYear() + "/" + calendar.getMonth() + "/" + calendar.getDay());
             } else {
                 calendar.setMonth(month);
                 text_month.setText(month + "");
@@ -141,6 +154,7 @@ public class CalendarMonth {
             int year = Integer.parseInt(text_year.getText());
             calendar.setYear(year);
             calendar.setMonthPage();
+            
             showdate.setText(calendar.getYear() + "/" + calendar.getMonth() + "/" + calendar.getDay());
         });
         
