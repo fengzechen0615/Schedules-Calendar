@@ -1,7 +1,7 @@
 package database;
 
 public interface List {
-	
+
 	public Node first();
 	public Node last();
 	public Node before(Node p);

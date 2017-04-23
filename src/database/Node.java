@@ -8,7 +8,7 @@ public class Node implements Position {
 		element = e;
 	}
 	
-	public Object element() {
-		return element;
+	public String[] element() {
+		return (String[]) element;
 	}
 }

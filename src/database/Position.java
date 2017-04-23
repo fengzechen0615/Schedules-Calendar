@@ -1,5 +1,5 @@
 package database;
 
 public interface Position {
-	public Object element();
+	public String[] element();
 }
