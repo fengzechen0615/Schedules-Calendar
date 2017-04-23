@@ -21,15 +21,14 @@ public class EditngCell extends TableCell<Staff,String>
 
 	@Override
 	public void startEdit() {
-		super.startEdit();
-		if (!isEmpty()) 
+		if(!isEmpty())
 		{
 			super.startEdit();
 			creatTextField();
 			setText(null);
 			setGraphic(textField);
 			textField.selectAll();
-			}
+		}	
 	}
 
 	public void updateItem(String item,boolean empty) {
