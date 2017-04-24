@@ -1,5 +1,6 @@
 package UI;
 
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
@@ -17,10 +18,20 @@ public class AboutText {
 		Label label = new Label();
 		
 		Pane pane = new Pane();
+		label.setPadding(new Insets(10));
+		label.setText("Alpha Version Introduction \nFeatures:\n"
+				+ "•	You can add new tasks or courses into the timetable.\n"
+				+ "•	You can watch the interfaces directly and find if there are\n"
+				+ "     \tconflictions in the timetable.\n"
+				+ "•	Every data is saved in the Mysql database.\n"
+				+ "•	There are still some bugs in the application. We try our\n "
+				+ "     \tbest to solve them.");
 		pane.getChildren().add(label);
+		
 		
 		Scene scene = new Scene(pane);
 		stage.setScene(scene);
+		stage.setResizable(false);
 		
 		stage.showAndWait();
 	}
