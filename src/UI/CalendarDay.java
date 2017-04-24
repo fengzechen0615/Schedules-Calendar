@@ -19,6 +19,7 @@ import javafx.util.Callback;
 public class CalendarDay {
 	
 	private static TableView<Staff> table= new TableView<>();
+	public static Staff[] array;
 	private final static ObservableList<Staff> data =FXCollections.observableArrayList(new Staff("00:00"," "," "),
 			new Staff("01:00"," "," "),
 			new Staff("02:00"," "," "),
@@ -163,5 +164,22 @@ public class CalendarDay {
 		
 		return flow;
 	}
+    
+
+    
+  
+    public static String[][] Store()
+    {
+    	String[][] database = new String[50][4];
+    	for(int i=0;i<data.size();i++)
+    	{
+    		array[i]=data.get(i);
+    		database[i][0]=""+CalendarMonth.gettextday()+CalendarMonth.gettextmonth()+CalendarMonth.gettextyear();
+    		database[i][1]=array[i].getTime();
+    		database[i][2]=array[i].getCourse();
+    		database[i][3]=array[i].getThings();
+    	}
+    	return database;
+    }
 
 }
