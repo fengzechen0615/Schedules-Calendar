@@ -20,7 +20,7 @@ public class Main extends Application{
 		primaryStage.setTitle("Plus1second");
 		primaryStage.setResizable(false);
 		primaryStage.show();
-		
+		CalendarDay.print();
 	}
 	
 	public static void main(String[] args) {

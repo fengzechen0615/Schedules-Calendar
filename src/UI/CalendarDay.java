@@ -19,10 +19,9 @@ import javafx.util.Callback;
 public class CalendarDay {
 	
 	private static TableView<Staff> table= new TableView<>();
-	public static Staff[] array;
-	private final static ObservableList<Staff> data =FXCollections.observableArrayList(new Staff("00:00"," "," "),
-			new Staff("01:00"," "," "),
-			new Staff("02:00"," "," "),
+	private final static ObservableList<Staff> data =FXCollections.observableArrayList(new Staff("00:00"," y","a "),
+			new Staff("01:00","l "," p"),
+			new Staff("02:00"," f"," a"),
 			new Staff("03:00"," "," "),
 			new Staff("04:00"," "," "),
 			new Staff("05:00"," "," "),
@@ -153,12 +152,11 @@ public class CalendarDay {
 		return flow;
 	}
     
-    private static FlowPane addflowpane2() {
+    public static FlowPane addflowpane2() {
 		FlowPane flow = new FlowPane();
 		flow.setPadding(new Insets(5));
 		flow.setPrefWidth(330);
-		
-		Label sum = new Label("sum");
+		Label sum = new Label(""+data.size());
 		sum.setMaxWidth(330);
 		flow.getChildren().add(sum);
 		
@@ -171,15 +169,28 @@ public class CalendarDay {
     public static String[][] Store()
     {
     	String[][] database = new String[50][4];
+    	CalendarMonthPage c=new CalendarMonthPage();
     	for(int i=0;i<data.size();i++)
     	{
-    		array[i]=data.get(i);
-    		database[i][0]=""+CalendarMonth.gettextday()+CalendarMonth.gettextmonth()+CalendarMonth.gettextyear();
-    		database[i][1]=array[i].getTime();
-    		database[i][2]=array[i].getCourse();
-    		database[i][3]=array[i].getThings();
+    		database[i][0]=""+c.getDay()+c.getMonth()+c.getYear();
+    		database[i][1]=data.get(i).getTime();
+    		database[i][2]=data.get(i).getCourse();
+    		database[i][3]=data.get(i).getThings();
     	}
     	return database;
+    }
+    
+    public static void print()
+    {
+    	String[][] database = new String[50][4];
+    	database=Store();
+    	for(int i=0;i<data.size();i++)
+    	{
+    		for(int j=0;j<database[i].length;j++)
+    		{
+    			System.out.println(database[i][j]);
+    		}
+    	}
     }
 
 }
