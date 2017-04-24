@@ -19,9 +19,10 @@ import javafx.util.Callback;
 public class CalendarDay {
 	
 	private static TableView<Staff> table= new TableView<>();
-	private final static ObservableList<Staff> data =FXCollections.observableArrayList(new Staff("00:00"," y","a "),
-			new Staff("01:00","l "," p"),
-			new Staff("02:00"," f"," a"),
+	public static Staff[] array;
+	private final static ObservableList<Staff> data =FXCollections.observableArrayList(new Staff("00:00","f ","d "),
+			new Staff("01:00","k "," a"),
+			new Staff("02:00","d "," d"),
 			new Staff("03:00"," "," "),
 			new Staff("04:00"," "," "),
 			new Staff("05:00"," "," "),
@@ -152,11 +153,12 @@ public class CalendarDay {
 		return flow;
 	}
     
-    public static FlowPane addflowpane2() {
+    private static FlowPane addflowpane2() {
 		FlowPane flow = new FlowPane();
 		flow.setPadding(new Insets(5));
 		flow.setPrefWidth(330);
-		Label sum = new Label(""+data.size());
+		
+		Label sum = new Label("sum");
 		sum.setMaxWidth(330);
 		flow.getChildren().add(sum);
 		
@@ -172,7 +174,7 @@ public class CalendarDay {
     	CalendarMonthPage c=new CalendarMonthPage();
     	for(int i=0;i<data.size();i++)
     	{
-    		database[i][0]=""+c.getDay()+c.getMonth()+c.getYear();
+    		database[i][0]=""+c.getYear()+c.getMonth()+c.getDay();
     		database[i][1]=data.get(i).getTime();
     		database[i][2]=data.get(i).getCourse();
     		database[i][3]=data.get(i).getThings();
@@ -180,7 +182,7 @@ public class CalendarDay {
     	return database;
     }
     
-    public static void print()
+    public static void Print()
     {
     	String[][] database = new String[50][4];
     	database=Store();
@@ -192,5 +194,5 @@ public class CalendarDay {
     		}
     	}
     }
-
+    
 }
