@@ -1,5 +1,6 @@
 package UI;
 
+import database.database;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -20,11 +21,19 @@ public class Main extends Application{
 		primaryStage.setTitle("Plus1second");
 		primaryStage.setResizable(false);
 		primaryStage.show();
-		CalendarDay.print();
+
 	}
 	
 	public static void main(String[] args) {
 		launch(args);
+		database one = new database();
+		String[][] a = CalendarDay.Store();
+		try {
+			one.wirteInSingle(a, "todolist");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
