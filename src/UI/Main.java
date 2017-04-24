@@ -26,14 +26,5 @@ public class Main extends Application{
 	
 	public static void main(String[] args) {
 		launch(args);
-		database one = new database();
-		String[][] a = CalendarDay.Store();
-		try {
-			one.wirteInSingle(a, "todolist");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
-
 }
