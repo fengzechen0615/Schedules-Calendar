@@ -1,5 +1,6 @@
 package UI;
 
+import database.database;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,33 +17,19 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.util.Callback;
 
+
 public class CalendarDay {
-	
+
 	private static TableView<Staff> table= new TableView<>();
-	private final static ObservableList<Staff> data =FXCollections.observableArrayList(new Staff("00:00"," y","a "),
-			new Staff("01:00","l "," p"),
-			new Staff("02:00"," f"," a"),
+	public static Staff[] array=null;
+	private final static ObservableList<Staff> data =FXCollections.observableArrayList(new Staff("00:00"," "," "),
+			new Staff("01:00"," "," "),
+			new Staff("02:00"," "," "),
 			new Staff("03:00"," "," "),
 			new Staff("04:00"," "," "),
 			new Staff("05:00"," "," "),
 			new Staff("06:00"," "," "),
-			new Staff("07:00"," "," "),
-			new Staff("08:00"," "," "),
-			new Staff("09:00"," "," "),
-			new Staff("10:00"," "," "),
-			new Staff("11:00"," "," "),
-			new Staff("12:00"," "," "),
-			new Staff("13:00"," "," "),
-			new Staff("14:00"," "," "),
-			new Staff("15:00"," "," "),
-			new Staff("16:00"," "," "),
-			new Staff("17:00"," "," "),
-			new Staff("18:00"," "," "),
-			new Staff("19:00"," "," "),
-			new Staff("20:00"," "," "),
-			new Staff("21:00"," "," "),
-			new Staff("22:00"," "," "),
-			new Staff("23:00"," "," "));
+			new Staff("07:00"," "," "));
 	
 	public static BorderPane getDay() {
 		BorderPane borderPane = new BorderPane();
@@ -54,6 +41,13 @@ public class CalendarDay {
 		borderPane.setRight(addflowpane2());
 		
 		return borderPane;
+	}
+	
+	public static void read() throws Exception
+	{
+		String [][] array=new String[50][4];
+		database db=new database();
+		array=db.search("todolist");
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -162,9 +156,6 @@ public class CalendarDay {
 		
 		return flow;
 	}
-    
-
-    
   
     public static String[][] Store()
     {
@@ -179,7 +170,7 @@ public class CalendarDay {
     	}
     	return database;
     }
-    
+
     public static void print()
     {
     	String[][] database = new String[50][4];
