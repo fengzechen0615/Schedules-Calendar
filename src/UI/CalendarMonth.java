@@ -101,7 +101,6 @@ public class CalendarMonth {
             text_year.setText(year + "");
             calendar.setMonthPage();
             showdate.setText(calendar.getYear() + "/" + calendar.getMonth() + "/" + calendar.getDay());
-            
         });
 		
         next_year.setOnAction(event -> {//next year
@@ -110,7 +109,6 @@ public class CalendarMonth {
             text_year.setText(year + "");
             calendar.setMonthPage();
             showdate.setText(calendar.getYear() + "/" + calendar.getMonth() + "/" + calendar.getDay());
-            
         });
         
         pre_month.setOnAction(event -> {//last month
@@ -123,13 +121,11 @@ public class CalendarMonth {
                 calendar.setMonthPage();
                 text_year.setText(calendar.getYear()+"");
                 showdate.setText(calendar.getYear() + "/" + calendar.getMonth() + "/" + calendar.getDay());
-                
             } else {
                 calendar.setMonth(month);
                 text_month.setText(month + "");
                 calendar.setMonthPage();
                 showdate.setText(calendar.getYear() + "/" + calendar.getMonth() + "/" + calendar.getDay());
-                
             }
             System.out.println(calendar.getMonth());
         });
@@ -145,7 +141,6 @@ public class CalendarMonth {
                 text_year.setText(calendar.getYear()+"");
                 calendar.setMonthPage();
                 showdate.setText(calendar.getYear() + "/" + calendar.getMonth() + "/" + calendar.getDay());
-                
             } else {
                 calendar.setMonth(month);
                 text_month.setText(month + "");
@@ -161,7 +156,6 @@ public class CalendarMonth {
             calendar.setMonthPage();
             
             showdate.setText(calendar.getYear() + "/" + calendar.getMonth() + "/" + calendar.getDay());
-           
         });
         
         text_month.setOnAction(event -> {//输入月份
@@ -169,7 +163,6 @@ public class CalendarMonth {
             calendar.setMonth(month);
             calendar.setMonthPage();
             showdate.setText(calendar.getYear() + "/" + calendar.getMonth() + "/" + calendar.getDay() + "/");
-           
         });
 			
         text_day.setOnAction(event -> {//输入月份
@@ -177,7 +170,6 @@ public class CalendarMonth {
 			calendar.setDay(day);
             calendar.setMonthPage();
             showdate.setText(calendar.getYear() + "/" + calendar.getMonth() + "/" + calendar.getDay() + "/");
-            CalendarDay.getDay();
         });
 		return gridMonth;
 	}

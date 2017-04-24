@@ -63,7 +63,7 @@ public class database {
 		Class.forName("com.mysql.jdbc.Driver");
 		String url = "jdbc:mysql://localhost:3306/employee";
 		String user = "root";
-		String password = "0";
+		String password = "yibo950615";
 		Connection connection = (Connection) DriverManager.getConnection(url,user,password);
 	    String sql = "INSERT INTO "+ b +" (date, event, place, time) VALUES(?,?,?,?)";
 	    PreparedStatement pstmt;
@@ -109,7 +109,7 @@ public class database {
 		Class.forName("com.mysql.jdbc.Driver");
 		String url = "jdbc:mysql://localhost:3306/employee";
 		String user = "root";
-		String password = "0";
+		String password = "yibo950615";
 		Connection connection = (Connection) DriverManager.getConnection(url,user,password);
 		Statement statement = (Statement) connection.createStatement();
 		String sql = "SELECT * from "+ b;
