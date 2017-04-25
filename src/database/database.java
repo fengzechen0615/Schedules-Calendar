@@ -21,9 +21,9 @@ public class database {
 		String password = "yibo950615";
 		Connection connection = (Connection) DriverManager.getConnection(url,user,password);
 		Statement statement = (Statement) connection.createStatement();
-	    String sql = "CREATE TABLE schedule(date CHAR(10) PRIMARY KEY, event CHAR(20), place CHAR(30), time CHAR(10))";       
+	    String sql = "CREATE TABLE schedule(date CHAR(10), time CHAR(20) unique, event CHAR(30), place CHAR(30))";       
 	    statement.executeUpdate(sql);
-	    sql = "CREATE TABLE todoList(date CHAR(10), event CHAR(20), place CHAR(30), time CHAR(10))";
+	    sql = "CREATE TABLE todoList(date CHAR(10), time CHAR(20) unique, event CHAR(30), place CHAR(30)";
 	    statement.execute(sql);    
 		statement.close();
 		connection.close();
