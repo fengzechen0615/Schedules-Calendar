@@ -29,32 +29,19 @@ public class database {
 		connection.close();
 	}
 	
-	public void wirteIn(SinglyLinkedList a,String b) throws Exception{
+	public void update(String[] a,String b,String c)throws Exception{
 		Class.forName("com.mysql.jdbc.Driver");
 		String url = "jdbc:mysql://localhost:3306/employee";
 		String user = "root";
 		String password = "yibo950615";
 		Connection connection = (Connection) DriverManager.getConnection(url,user,password);
 		Statement statement = (Statement) connection.createStatement();
-		Node p = a.first();
-		while(p != a.last()){
-			String[] i =  p.element();
-			String sql = "INSERT INTO "+ b +" (date, time, event, place) VALUES(?,?,?,?)";
-			PreparedStatement pstmt;
-			int n = 0;
-			try {
-				pstmt = (PreparedStatement) connection.prepareStatement(sql);
-			    pstmt.setString(1, i[0]);
-			    pstmt.setString(2, i[1]);
-			    pstmt.setString(3, i[2]);
-			    pstmt.setString(4, i[3]);
-			    n = pstmt.executeUpdate();
-			    pstmt.close();
-			} catch (SQLException e) {
-			    e.printStackTrace();
-			}
-			p = p.next;
-		}
+		String sql = "update" +b+ " set event ='"+ a[2] +"' where time = "+a[1];
+		statement.executeUpdate(sql);
+		sql =" update" +b+ " set date ='"+ a[0] +"' where time = "+a[1];
+		statement.executeUpdate(sql);
+		sql =" update" +b+ " set place ='"+ a[3] +"' where time = "+a[1];
+		statement.executeUpdate(sql);
 		statement.close();
 		connection.close();
 	}
@@ -70,7 +57,7 @@ public class database {
 	    int i = 0;
 	    try {
 	    	int k = 0;
-	    	while(a[k][2] != null){
+	    	while(a[k][1] != null){
 	    		pstmt = (PreparedStatement) connection.prepareStatement(sql);
 	    		pstmt.setString(1, a[k][0]);
 	    		pstmt.setString(2, a[k][1]);
@@ -125,9 +112,9 @@ public class database {
 			while(result.next()){
 				for(int j = 0;j < 4;j++){
 				array[i][0] = result.getString(1);
-				array[i][2] = result.getString(2);
-				array[i][3] = result.getString(3);
-				array[i][4] = result.getString(4);
+				array[i][1] = result.getString(2);
+				array[i][2] = result.getString(3);
+				array[i][3] = result.getString(4);
 				}
 				i++;
 			}
@@ -139,6 +126,32 @@ public class database {
 		connection.close();
 		return array;
 	}
-
+	
+	public int count(String b) throws Exception{
+		Class.forName("com.mysql.jdbc.Driver");
+		String url = "jdbc:mysql://localhost:3306/employee";
+		String user = "root";
+		String password = "yibo950615";
+		Connection connection = (Connection) DriverManager.getConnection(url,user,password);
+		Statement statement = (Statement) connection.createStatement();
+		String sql = "SELECT count(time) from "+ b;
+		ResultSet result = null;
+		try{
+			result = statement.executeQuery(sql);
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		int i = 0;
+		try{
+			i = result.getInt(1);
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		result.close();
+		statement.close();
+		connection.close();
+		return i;
+	}
+	
 }
 
