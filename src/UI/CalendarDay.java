@@ -170,7 +170,7 @@ public class CalendarDay {
 			addCourse.clear();
 			addThings.clear();
 			try {
-				db.wirteIn(str, "todolist");
+				db.wirteInSingle(str, "todolist");
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
@@ -203,7 +203,7 @@ public class CalendarDay {
     		database[i][3]=data.get(i).getThings();
     	}
     	try {
-			db.wirteInSingle(database, "todolist");
+			db.wirteIn(database, "todolist");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

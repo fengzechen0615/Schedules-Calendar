@@ -16,7 +16,7 @@ public class database {
 		Class.forName("com.mysql.jdbc.Driver");
 		String url = "jdbc:mysql://localhost:3306/employee";
 		String user = "root";
-		String password = "";
+		String password = "yibo950615";
 		Connection connection = (Connection) DriverManager.getConnection(url,user,password);
 		Statement statement = (Statement) connection.createStatement();
 	    String sql = "CREATE TABLE schedule(date CHAR(10), time CHAR(20) unique, course CHAR(30), things CHAR(30))";       
@@ -27,11 +27,11 @@ public class database {
 		connection.close();
 	}
 	
-	public void wirteIn(String[] a,String b) throws Exception{
+	public void wirteInSingle(String[] a,String b) throws Exception{
 		Class.forName("com.mysql.jdbc.Driver");
 		String url = "jdbc:mysql://localhost:3306/employee";
 		String user = "root";
-		String password = "";
+		String password = "yibo950615";
 		Connection connection = (Connection) DriverManager.getConnection(url,user,password);
 	    String sql = "INSERT INTO "+ b +" (date, time, course, things) VALUES(?,?,?,?)";
 	    PreparedStatement pstmt;
@@ -56,7 +56,7 @@ public class database {
 		Class.forName("com.mysql.jdbc.Driver");
 		String url = "jdbc:mysql://localhost:3306/employee";
 		String user = "root";
-		String password = "";
+		String password = "yibo950615";
 		Connection connection = (Connection) DriverManager.getConnection(url,user,password);
 		Statement statement = (Statement) connection.createStatement();
 		String sql = "update" +b+ " set course ='"+ a[2] +"' where time = "+a[1];
@@ -69,11 +69,11 @@ public class database {
 		connection.close();
 	}
 	
-	public void wirteInSingle(String[][] a,String b) throws Exception{
+	public void wirteIn(String[][] a,String b) throws Exception{
 		Class.forName("com.mysql.jdbc.Driver");
 		String url = "jdbc:mysql://localhost:3306/employee";
 		String user = "root";
-		String password = "";
+		String password = "yibo950615";
 		Connection connection = (Connection) DriverManager.getConnection(url,user,password);
 	    String sql = "INSERT INTO "+ b +" (date, time, course, things) VALUES(?,?,?,?)";
 	    PreparedStatement pstmt;
@@ -101,7 +101,7 @@ public class database {
 		Class.forName("com.mysql.jdbc.Driver");
 		String url = "jdbc:mysql://localhost:3306/employee";
 		String user = "root";
-		String password = "";
+		String password = "yibo950615";
 		Connection connection = (Connection) DriverManager.getConnection(url,user,password);
 		String sql = "DELETE from "+ b +" where time = "+ a;
 		PreparedStatement pstmt;
@@ -121,7 +121,7 @@ public class database {
 		Class.forName("com.mysql.jdbc.Driver");
 		String url = "jdbc:mysql://localhost:3306/employee";
 		String user = "root";
-		String password = "";
+		String password = "yibo950615";
 		Connection connection = (Connection) DriverManager.getConnection(url,user,password);
 		Statement statement = (Statement) connection.createStatement();
 		String sql = "SELECT * from "+ b;
@@ -156,7 +156,7 @@ public class database {
 		Class.forName("com.mysql.jdbc.Driver");
 		String url = "jdbc:mysql://localhost:3306/employee";
 		String user = "root";
-		String password = "";
+		String password = "yibo950615";
 		Connection connection = (Connection) DriverManager.getConnection(url,user,password);
 		Statement statement = (Statement) connection.createStatement();
 		String sql = "SELECT count(time) from "+ b;
