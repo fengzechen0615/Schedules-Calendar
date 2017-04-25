@@ -39,7 +39,7 @@ public class database {
 		Node p = a.first();
 		while(p != a.last()){
 			String[] i =  p.element();
-			String sql = "INSERT INTO "+ b +" (date, event, place, time) VALUES(?,?,?,?)";
+			String sql = "INSERT INTO "+ b +" (date, time, event, place) VALUES(?,?,?,?)";
 			PreparedStatement pstmt;
 			int n = 0;
 			try {
@@ -65,7 +65,7 @@ public class database {
 		String user = "root";
 		String password = "yibo950615";
 		Connection connection = (Connection) DriverManager.getConnection(url,user,password);
-	    String sql = "INSERT INTO "+ b +" (date, event, place, time) VALUES(?,?,?,?)";
+	    String sql = "INSERT INTO "+ b +" (date, time, event, place) VALUES(?,?,?,?)";
 	    PreparedStatement pstmt;
 	    int i = 0;
 	    try {
