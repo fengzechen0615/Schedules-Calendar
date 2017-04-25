@@ -21,7 +21,8 @@ import javafx.util.Callback;
 public class CalendarDay {
 
 	private static TableView<Staff> table= new TableView<>();
-	public static Staff[] array=null;
+	private static database db=new database();
+	public static Staff[] staff=new Staff[50];
 	private final static ObservableList<Staff> data =FXCollections.observableArrayList(new Staff("00:00"," "," "),
 			new Staff("01:00"," "," "),
 			new Staff("02:00"," "," "),
@@ -48,6 +49,24 @@ public class CalendarDay {
 		String [][] array=new String[50][4];
 		database db=new database();
 		array=db.search("todolist");
+		int i=0,j=data.size();
+		data.clear();
+		while(array[i][0]!=null)
+		{
+			if(i<j)
+			{
+				System.out.println(array[i][0]+"/"+array[i][1]+"/"+array[i][2]+"/"+array[i][3]);
+				staff[i]=new Staff(array[i][1],array[i][2],array[i][3]);
+				data.add(staff[i]);
+				System.out.println(staff[i].getTime()+"/"+staff[i].getCourse()+"/"+staff[i].getThings());
+				i++;
+			}
+			else
+			{
+				data.add(new Staff(array[i][1],array[i][2],array[i][3]));
+				i++;
+			}
+		}
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -100,7 +119,11 @@ public class CalendarDay {
 					t.getTablePosition().getRow())).setThings(
 							t.getNewValue());
 		});
-		
+		try {
+			read();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		table.setItems(data);
 		table.getColumns().addAll(TimeCol,CourseCol,ThingsCol);
 			
@@ -137,10 +160,20 @@ public class CalendarDay {
 		addButton.setOnAction((ActionEvent e)->
 		{
 			data.add(new Staff(addTime.getText(),addCourse.getText(),addThings.getText()));
+			String[] str=new String[4];
+			CalendarMonthPage c=new CalendarMonthPage();
+			str[0]=""+c.getYear()+c.getMonth()+c.getDay();
+			str[1]=addTime.getText();
+			str[2]=addCourse.getText();
+			str[3]=addThings.getText();
 			addTime.clear();
 			addCourse.clear();
 			addThings.clear();
-			
+			try {
+				db.wirteIn(str, "todolist");
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
 		});
 		
 		return flow;
@@ -158,7 +191,7 @@ public class CalendarDay {
 		return flow;
 	}
   
-    public static String[][] Store()
+    public static void Store()
     {
     	String[][] database = new String[50][4];
     	CalendarMonthPage c=new CalendarMonthPage();
@@ -169,11 +202,16 @@ public class CalendarDay {
     		database[i][2]=data.get(i).getCourse();
     		database[i][3]=data.get(i).getThings();
     	}
-    	return database;
+    	try {
+			db.wirteInSingle(database, "todolist");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    	
     }
 
     
-    public static void Print()
+   /* public static void Print()
     {
     	String[][] database = new String[50][4];
     	database=Store();
@@ -184,6 +222,6 @@ public class CalendarDay {
     			System.out.println(database[i][j]);
     		}
     	}
-    }
+    }*/
     
 }
