@@ -155,7 +155,7 @@ public class CalendarDay {
 			data.set(t.getTablePosition().getRow(), (Staff) t.getTableView().getItems().get(
 					t.getTablePosition().getRow()));
 			String[] args=new String[4];
-			args[0]=""+c.getYear()+c.getMonth()+c.getDay();
+			args[0]=date;
 			args[1]=""+data.get(t.getTablePosition().getRow()).getTime();
 			args[2]=""+data.get(t.getTablePosition().getRow()).getCourse();
 			args[3]=""+data.get(t.getTablePosition().getRow()).getThings();	

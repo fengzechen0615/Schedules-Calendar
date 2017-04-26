@@ -18,7 +18,7 @@ public class database {
 		Class.forName("com.mysql.jdbc.Driver");
 		String url = "jdbc:mysql://localhost:3306/employee";
 		String user = "root";
-		String password = "0";
+		String password = "yibo950615";
 		Connection connection = (Connection) DriverManager.getConnection(url,user,password);
 		Statement statement = (Statement) connection.createStatement();
 	    String sql = "CREATE TABLE schedule(date CHAR(10), time CHAR(20) unique, course CHAR(30), things CHAR(30))";       
@@ -33,7 +33,7 @@ public class database {
 		Class.forName("com.mysql.jdbc.Driver");
 		String url = "jdbc:mysql://localhost:3306/employee";
 		String user = "root";
-		String password = "0";
+		String password = "yibo950615";
 		Connection connection = (Connection) DriverManager.getConnection(url,user,password);
 	    String sql = "INSERT INTO "+ b +" (date, time, course, things) VALUES(?,?,?,?)";
 	    PreparedStatement pstmt;
@@ -57,7 +57,7 @@ public class database {
 		Class.forName("com.mysql.jdbc.Driver");
 		String url = "jdbc:mysql://localhost:3306/employee";
 		String user = "root";
-		String password = "0";
+		String password = "yibo950615";
 		Connection connection = (Connection) DriverManager.getConnection(url,user,password);	
 		Statement statement = (Statement) connection.createStatement();
 		String sql = " update " +b+ " set time ='"+ a[1] +"' where course = '"+a[2]+"'";
@@ -70,7 +70,7 @@ public class database {
 		Class.forName("com.mysql.jdbc.Driver");
 		String url = "jdbc:mysql://localhost:3306/employee";
 		String user = "root";
-		String password = "0";
+		String password = "yibo950615";
 		Connection connection = (Connection) DriverManager.getConnection(url,user,password);
 		Statement statement = (Statement) connection.createStatement();
 		String sql = " update " +b+ " set course ='"+ a[2] +"' where time = '"+a[1]+"'";
@@ -87,7 +87,7 @@ public class database {
 		Class.forName("com.mysql.jdbc.Driver");
 		String url = "jdbc:mysql://localhost:3306/employee";
 		String user = "root";
-		String password = "0";
+		String password = "yibo950615";
 		Connection connection = (Connection) DriverManager.getConnection(url,user,password);
 	    String sql = "INSERT INTO "+ b +" (date, time, course, things) VALUES(?,?,?,?)";
 	    PreparedStatement pstmt;
@@ -114,7 +114,7 @@ public class database {
 		Class.forName("com.mysql.jdbc.Driver");
 		String url = "jdbc:mysql://localhost:3306/employee";
 		String user = "root";
-		String password = "0";
+		String password = "yibo950615";
 		Connection connection = (Connection) DriverManager.getConnection(url,user,password);
 		String sql = "DELETE from "+ b +" where time = "+ a;
 		PreparedStatement pstmt;
@@ -133,7 +133,7 @@ public class database {
 		Class.forName("com.mysql.jdbc.Driver");
 		String url = "jdbc:mysql://localhost:3306/employee";
 		String user = "root";
-		String password = "0";
+		String password = "yibo950615";
 		Connection connection = (Connection) DriverManager.getConnection(url,user,password);
 		Statement statement = (Statement) connection.createStatement();
 		String sql = "SELECT * from "+ b;
@@ -168,7 +168,7 @@ public class database {
 		Class.forName("com.mysql.jdbc.Driver");
 		String url = "jdbc:mysql://localhost:3306/employee";
 		String user = "root";
-		String password = "0";
+		String password = "yibo950615";
 		Connection connection = (Connection) DriverManager.getConnection(url,user,password);
 		Statement statement = (Statement) connection.createStatement();
 		String sql = "SELECT * from "+ b+" WHERE date = '"+date+"'";
@@ -203,7 +203,7 @@ public class database {
 		Class.forName("com.mysql.jdbc.Driver");
 		String url = "jdbc:mysql://localhost:3306/employee";
 		String user = "root";
-		String password = "0";
+		String password = "yibo950615";
 		Connection connection = (Connection) DriverManager.getConnection(url,user,password);
 		Statement statement = (Statement) connection.createStatement();
 		String sql = "SELECT * from "+ b +" WHERE time = '"+time+"'";
@@ -234,7 +234,7 @@ public class database {
 		Class.forName("com.mysql.jdbc.Driver");
 		String url = "jdbc:mysql://localhost:3306/employee";
 		String user = "root";
-		String password = "0";
+		String password = "yibo950615";
 		Connection connection = (Connection) DriverManager.getConnection(url,user,password);
 		Statement statement = (Statement) connection.createStatement();
 		String sql = "SELECT count(time) from "+ b;
