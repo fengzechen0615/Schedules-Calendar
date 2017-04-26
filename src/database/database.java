@@ -37,7 +37,8 @@ public class database {
 		Connection connection = (Connection) DriverManager.getConnection(url,user,password);
 	    String sql = "INSERT INTO "+ b +" (date, time, course, things) VALUES(?,?,?,?)";
 	    PreparedStatement pstmt;
-	    int i = 0;
+	    @SuppressWarnings("unused")
+		int i = 0;
 	    try {
 	    	pstmt = (PreparedStatement) connection.prepareStatement(sql);
 	    	pstmt.setString(1, a[0]);
@@ -91,7 +92,8 @@ public class database {
 		Connection connection = (Connection) DriverManager.getConnection(url,user,password);
 	    String sql = "INSERT INTO "+ b +" (date, time, course, things) VALUES(?,?,?,?)";
 	    PreparedStatement pstmt;
-	    int i = 0;
+	    @SuppressWarnings("unused")
+		int i = 0;
 	    try {
 	    	int k = count(b);
 	    	while(a[k][1] != null){
@@ -118,6 +120,7 @@ public class database {
 		Connection connection = (Connection) DriverManager.getConnection(url,user,password);
 		String sql = "DELETE from "+ b +" where time = "+ a;
 		PreparedStatement pstmt;
+		@SuppressWarnings("unused")
 		int i = 0;
 		try{
 			pstmt = (PreparedStatement) connection.prepareStatement(sql);

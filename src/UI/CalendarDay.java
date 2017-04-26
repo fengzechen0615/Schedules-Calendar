@@ -148,6 +148,7 @@ public class CalendarDay {
 		CourseCol.setCellFactory(cellFactory);
 		CourseCol.setOnEditCommit((CellEditEvent<Staff,String> t)->
 		{
+			@SuppressWarnings("unused")
 			CalendarMonthPage c=new CalendarMonthPage();
 			((Staff) t.getTableView().getItems().get(
 					t.getTablePosition().getRow())).setCourse(
@@ -296,19 +297,5 @@ public class CalendarDay {
 		}
     	
     }
-
-    
-   /* public static void Print()
-    {
-    	String[][] database = new String[50][4];
-    	database=Store();
-    	for(int i=0;i<data.size();i++)
-    	{
-    		for(int j=0;j<database[i].length;j++)
-    		{
-    			System.out.println(database[i][j]);
-    		}
-    	}
-    }*/
-    
+  
 }
