@@ -9,12 +9,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import database.database;
 
 public class Tips {
 
 	static TextField CcourseName=new TextField();
 	static TextField location = new TextField();
 	public static void start() throws Exception {
+		database db = new database();
 		Stage window=new Stage();
 		window.setTitle("Enter your course");
 		window.initModality(Modality.APPLICATION_MODAL);
@@ -27,10 +29,18 @@ public class Tips {
 		Label label2=new Label("Enter your course's location");
 		Button button=new Button("Save");
 		button.setOnAction((ActionEvent e)->{
+			String[] a = new String[4];
+			a[1] = n;
+			a[2] = Tips.getCourse();
+			a[3] = Tips.getLocation();
+			try {
+				db.update(a, "schedule");
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
 			window.close();
 		});
 		tips.getChildren().addAll(label, CcourseName,label2, location, button);
-		
 		Scene scene = new Scene(tips);
 	    window.setScene(scene);
 	    window.showAndWait();
@@ -59,4 +69,10 @@ public class Tips {
 			e.printStackTrace();
 		}
 	}
+	
+	static String n;
+	public static void getName(String name){
+		n = name;
+	}
+	
 }

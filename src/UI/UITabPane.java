@@ -5,7 +5,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TabPane.TabClosingPolicy;
 
 public class UITabPane {
-	public static TabPane getTabPane() {
+	public static TabPane getTabPane() throws Exception {
 		TabPane tab = new TabPane();
 		tab.setTabClosingPolicy(TabClosingPolicy.UNAVAILABLE);
 		tab.setTabMinWidth(100);

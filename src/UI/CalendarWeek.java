@@ -8,19 +8,24 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import database.database;
 
 
 public class CalendarWeek {
-	public static Pane getWeek() {
+	public static Pane getWeek() throws Exception {
 		Pane pane = new Pane();
 		pane.getChildren().add(Button());
-		
 		return pane;
 	}
 
-	private static GridPane Button() {
+	public static void main(String[] args) throws Exception{
+		database db = new database();
+		System.out.println(db.searchTime("schedule", "Mon1")[1]);
+	}
+	private static GridPane Button() throws Exception {
 		
 		GridPane root = new GridPane();
+		database db = new database();
 		
         Text t1 = new Text("8:00~9:35");
         Text t3 = new Text("9:55~11:30");
@@ -66,40 +71,45 @@ public class CalendarWeek {
         sun.setTextAlignment(TextAlignment.CENTER);
         
         Button mon1 = new Button();
-        mon1.setText("+");
+        
+        
+        mon1.setText("");
      	mon1.setMinSize(89, 70);
      	mon1.setMaxSize(89, 70);
      	
         mon1.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+            	Tips.getName("Mon1");
             	Tips.launch();
                 System.out.println("!");
                 mon1.setText(Tips.getCourse()+"\n@"+Tips.getLocation());
-               // primaryStage.show();
             }
         });
         
         Button mon2 = new Button();
-        mon2.setText("+");
+        mon2.setText("");
      	mon2.setMinSize(89, 70);
      	mon2.setMaxSize(89, 70);
         mon2.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+            	Tips.getName("Mon2");
             	Tips.launch();
                 System.out.println("!");
                 mon2.setText(Tips.getCourse()+"\n@"+Tips.getLocation());
+                
             }
         });
         
         Button mon3 = new Button();
-        mon3.setText("+");
+        mon3.setText("");
      	mon3.setMinSize(89, 70);
      	mon3.setMaxSize(89, 70);
         mon3.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+            	Tips.getName("Mon3");
             	Tips.launch();
                 System.out.println("!");
                 mon3.setText(Tips.getCourse()+"\n@"+Tips.getLocation());
@@ -107,12 +117,13 @@ public class CalendarWeek {
         });
         
         Button mon4 = new Button();
-        mon4.setText("+");
+        mon4.setText("");
      	mon4.setMinSize(89, 70);
      	mon4.setMaxSize(89, 70);
         mon4.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+            	Tips.getName("Mon4");
             	Tips.launch();
                 System.out.println("!");
                 mon4.setText(Tips.getCourse()+"\n@"+Tips.getLocation());
@@ -120,12 +131,13 @@ public class CalendarWeek {
         });
         
         Button mon5 = new Button();
-        mon5.setText("+");
+        mon5.setText("");
      	mon5.setMinSize(89, 70);
      	mon5.setMaxSize(89, 70);
         mon5.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+            	Tips.getName("Mon5");
             	Tips.launch();
                 System.out.println("!");
                 mon5.setText(Tips.getCourse()+"\n@"+Tips.getLocation());
@@ -133,12 +145,13 @@ public class CalendarWeek {
         });
         
         Button mon6 = new Button();
-        mon6.setText("+");
+        mon6.setText("");
      	mon6.setMinSize(89, 70);
      	mon6.setMaxSize(89, 70);
         mon6.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+            	Tips.getName("Mon6");
             	Tips.launch();
                 System.out.println("!");
                 mon6.setText(Tips.getCourse()+"\n@"+Tips.getLocation());
@@ -146,12 +159,13 @@ public class CalendarWeek {
         });
         
         Button thues1 = new Button();
-        thues1.setText("+");
+        thues1.setText("");
      	thues1.setMinSize(89, 70);
      	thues1.setMaxSize(89, 70);
         thues1.setOnAction(new EventHandler<ActionEvent>() {
             
             public void handle(ActionEvent event) {
+            	Tips.getName("Tues1");
             	Tips.launch();
                 System.out.println("!");
                 thues1.setText(Tips.getCourse()+"\n@"+Tips.getLocation());
@@ -159,12 +173,13 @@ public class CalendarWeek {
         });
         
         Button thues2 = new Button();
-        thues2.setText("+");
+        thues2.setText("");
      	thues2.setMinSize(89, 70);
      	thues2.setMaxSize(89, 70);
         thues2.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+            	Tips.getName("Tues2");
             	Tips.launch();
                 System.out.println("!");
                 thues2.setText(Tips.getCourse()+"\n@"+Tips.getLocation());
@@ -172,12 +187,13 @@ public class CalendarWeek {
         });
         
         Button thues3 = new Button();
-        thues3.setText("+");
+        thues3.setText("");
      	thues3.setMinSize(89, 70);
      	thues3.setMaxSize(89, 70);
         thues3.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+            	Tips.getName("Tues3");
             	Tips.launch();
                 System.out.println("!");
                 thues3.setText(Tips.getCourse()+"\n@"+Tips.getLocation());
@@ -185,12 +201,13 @@ public class CalendarWeek {
         });
         
         Button thues4 = new Button();
-        thues4.setText("+");
+        thues4.setText("");
      	thues4.setMinSize(89, 70);
      	thues4.setMaxSize(89, 70);
         thues4.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+            	Tips.getName("Tues4");
             	Tips.launch();
                 System.out.println("!");
                 thues4.setText(Tips.getCourse()+"\n@"+Tips.getLocation());
@@ -198,12 +215,13 @@ public class CalendarWeek {
         });
         
         Button thues5 = new Button();
-        thues5.setText("+");
+        thues5.setText("");
      	thues5.setMinSize(89, 70);
      	thues5.setMaxSize(89, 70);
         thues5.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+            	Tips.getName("Tues5");
             	Tips.launch();
                 System.out.println("!");
                 thues5.setText(Tips.getCourse()+"\n@"+Tips.getLocation());
@@ -211,24 +229,27 @@ public class CalendarWeek {
         });
         
         Button thues6 = new Button();
-        thues6.setText("+");
+        thues6.setText("");
      	thues6.setMinSize(89, 70);
      	thues6.setMaxSize(89, 70);
         thues6.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+            	Tips.getName("Tues6");
             	Tips.launch();
                 System.out.println("!");
                 thues6.setText(Tips.getCourse()+"\n@"+Tips.getLocation());
             }
         });
+        
         Button wed1 = new Button();
-        wed1.setText("+");
+        wed1.setText("");
      	wed1.setMinSize(89, 70);
      	wed1.setMaxSize(89, 70);
         wed1.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+            	Tips.getName("Wed1");
             	Tips.launch();
                 System.out.println("!");
                 wed1.setText(Tips.getCourse()+"\n@"+Tips.getLocation());
@@ -236,12 +257,13 @@ public class CalendarWeek {
         });
         
         Button wed2 = new Button();
-        wed2.setText("+");
+        wed2.setText("");
      	wed2.setMinSize(89, 70);
      	wed2.setMaxSize(89, 70);
         wed2.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+            	Tips.getName("Wed2");
             	Tips.launch();
                 System.out.println("!");
                 wed2.setText(Tips.getCourse()+"\n@"+Tips.getLocation());
@@ -249,12 +271,13 @@ public class CalendarWeek {
         });
         
         Button wed3 = new Button();
-        wed3.setText("+");
+        wed3.setText("");
      	wed3.setMinSize(89, 70);
      	wed3.setMaxSize(89, 70);
         wed3.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+            	Tips.getName("Wed3");
             	Tips.launch();
                 System.out.println("!");
                 wed3.setText(Tips.getCourse()+"\n@"+Tips.getLocation());
@@ -262,12 +285,13 @@ public class CalendarWeek {
         });
         
         Button wed4 = new Button();
-        wed4.setText("+");
+        wed4.setText("");
      	wed4.setMinSize(89, 70);
      	wed4.setMaxSize(89, 70);
         wed4.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+            	Tips.getName("Wed4");
             	Tips.launch();
                 System.out.println("!");
                 wed4.setText(Tips.getCourse()+"\n@"+Tips.getLocation());
@@ -275,12 +299,13 @@ public class CalendarWeek {
         });
         
         Button wed5 = new Button();
-        wed5.setText("+");
+        wed5.setText("");
      	wed5.setMinSize(89, 70);
      	wed5.setMaxSize(89, 70);
         wed5.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+            	Tips.getName("Wed5");
             	Tips.launch();
                 System.out.println("!");
                 wed5.setText(Tips.getCourse()+"\n@"+Tips.getLocation());
@@ -288,24 +313,26 @@ public class CalendarWeek {
         });
         
         Button wed6 = new Button();
-        wed6.setText("+");
+        wed6.setText("");
      	wed6.setMinSize(89, 70);
      	wed6.setMaxSize(89, 70);
         wed6.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+            	Tips.getName("Wed6");
             	Tips.launch();
                 System.out.println("!");
                 wed6.setText(Tips.getCourse()+"\n@"+Tips.getLocation());
             }
         });
         Button thur1 = new Button();
-        thur1.setText("+");
+        thur1.setText("");
      	thur1.setMinSize(89, 70);
      	thur1.setMaxSize(89, 70);
         thur1.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+            	Tips.getName("Thurs1");
             	Tips.launch();
                 System.out.println("!");
                 thur1.setText(Tips.getCourse()+"\n@"+Tips.getLocation());
@@ -313,12 +340,13 @@ public class CalendarWeek {
         });
         
         Button thur2 = new Button();
-        thur2.setText("+");
+        thur2.setText("");
      	thur2.setMinSize(89, 70);
      	thur2.setMaxSize(89, 70);
         thur2.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+            	Tips.getName("Thurs2");
             	Tips.launch();
                 System.out.println("!");
                 thur2.setText(Tips.getCourse()+"\n@"+Tips.getLocation());
@@ -326,12 +354,13 @@ public class CalendarWeek {
         });
         
         Button thur3 = new Button();
-        thur3.setText("+");
+        thur3.setText("");
      	thur3.setMinSize(89, 70);
      	thur3.setMaxSize(89, 70);
         thur3.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+            	Tips.getName("Thurs3");
             	Tips.launch();
                 System.out.println("!");
                 thur3.setText(Tips.getCourse()+"\n@"+Tips.getLocation());
@@ -339,12 +368,13 @@ public class CalendarWeek {
         });
         
         Button thur4 = new Button();
-        thur4.setText("+");
+        thur4.setText("");
      	thur4.setMinSize(89, 70);
      	thur4.setMaxSize(89, 70);
         thur4.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+            	Tips.getName("Thurs4");
             	Tips.launch();
                 System.out.println("!");
                 thur4.setText(Tips.getCourse()+"\n@"+Tips.getLocation());
@@ -352,12 +382,13 @@ public class CalendarWeek {
         });
         
         Button thur5 = new Button();
-        thur5.setText("+");
+        thur5.setText("");
      	thur5.setMinSize(89, 70);
      	thur5.setMaxSize(89, 70);
         thur5.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+            	Tips.getName("Thurs5");
             	Tips.launch();
                 System.out.println("!");
                 thur5.setText(Tips.getCourse()+"\n@"+Tips.getLocation());
@@ -365,24 +396,26 @@ public class CalendarWeek {
         });
         
         Button thur6 = new Button();
-        thur6.setText("+");
+        thur6.setText("");
      	thur6.setMinSize(89, 70);
      	thur6.setMaxSize(89, 70);
         thur6.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+            	Tips.getName("Thurs6");
             	Tips.launch();
                 System.out.println("!");
                 thur6.setText(Tips.getCourse()+"\n@"+Tips.getLocation());
             }
         });
         Button fri1 = new Button();
-        fri1.setText("+");
+        fri1.setText("");
      	fri1.setMinSize(89, 70);
      	fri1.setMaxSize(89, 70);
         fri1.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+            	Tips.getName("Fri1");
             	Tips.launch();
                 System.out.println("!");
                 fri1.setText(Tips.getCourse()+"\n@"+Tips.getLocation());
@@ -390,12 +423,13 @@ public class CalendarWeek {
         });
         
         Button fri2 = new Button();
-        fri2.setText("+");
+        fri2.setText("");
      	fri2.setMinSize(89, 70);
      	fri2.setMaxSize(89, 70);
         fri2.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+            	Tips.getName("Fri2");
             	Tips.launch();
                 System.out.println("!");
                 fri2.setText(Tips.getCourse()+"\n@"+Tips.getLocation());
@@ -403,12 +437,13 @@ public class CalendarWeek {
         });
         
         Button fri3 = new Button();
-        fri3.setText("+");
+        fri3.setText("");
      	fri3.setMinSize(89, 70);
      	fri3.setMaxSize(89, 70);
         fri3.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+            	Tips.getName("Fri3");
             	Tips.launch();
                 System.out.println("!");
                 fri3.setText(Tips.getCourse()+"\n@"+Tips.getLocation());
@@ -416,12 +451,13 @@ public class CalendarWeek {
         });
         
         Button fri4 = new Button();
-        fri4.setText("+");
+        fri4.setText("");
      	fri4.setMinSize(89, 70);
      	fri4.setMaxSize(89, 70);
         fri4.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+            	Tips.getName("Fri4");
             	Tips.launch();
                 System.out.println("!");
                 fri4.setText(Tips.getCourse()+"\n@"+Tips.getLocation());
@@ -429,12 +465,13 @@ public class CalendarWeek {
         });
         
         Button fri5 = new Button();
-        fri5.setText("+");
+        fri5.setText("");
      	fri5.setMinSize(89, 70);
      	fri5.setMaxSize(89, 70);
         fri5.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+            	Tips.getName("Fri5");
             	Tips.launch();
                 System.out.println("!");
                 fri5.setText(Tips.getCourse()+"\n@"+Tips.getLocation());
@@ -442,24 +479,26 @@ public class CalendarWeek {
         });
         
         Button fri6 = new Button();
-        fri6.setText("+");
+        fri6.setText("");
      	fri6.setMinSize(89, 70);
      	fri6.setMaxSize(89, 70);
         fri6.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+            	Tips.getName("Fri6");
             	Tips.launch();
                 System.out.println("!");
                 fri6.setText(Tips.getCourse()+"\n@"+Tips.getLocation());
             }
         });
         Button sat1 = new Button();
-        sat1.setText("+");
+        sat1.setText("");
      	sat1.setMinSize(89, 70);
      	sat1.setMaxSize(89, 70);
         sat1.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+            	Tips.getName("Sat1");
             	Tips.launch();
                 System.out.println("!");
                 sat1.setText(Tips.getCourse()+"\n@"+Tips.getLocation());
@@ -467,12 +506,13 @@ public class CalendarWeek {
         });
         
         Button sat2 = new Button();
-        sat2.setText("+");
+        sat2.setText("");
      	sat2.setMinSize(89, 70);
      	sat2.setMaxSize(89, 70);
         sat2.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+            	Tips.getName("Sat2");
             	Tips.launch();
                 System.out.println("!");
                 sat2.setText(Tips.getCourse()+"\n@"+Tips.getLocation());
@@ -480,12 +520,13 @@ public class CalendarWeek {
         });
         
         Button sat3 = new Button();
-        sat3.setText("+");
+        sat3.setText("");
      	sat3.setMinSize(89, 70);
      	sat3.setMaxSize(89, 70);
         sat3.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+            	Tips.getName("Sat3");
             	Tips.launch();
                 System.out.println("!");
                 sat3.setText(Tips.getCourse()+"\n@"+Tips.getLocation());
@@ -493,12 +534,13 @@ public class CalendarWeek {
         });
         
         Button sat4 = new Button();
-        sat4.setText("+");
+        sat4.setText("");
      	sat4.setMinSize(89, 70);
      	sat4.setMaxSize(89, 70);
         sat4.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+            	Tips.getName("Sat4");
             	Tips.launch();
                 System.out.println("!");
                 sat4.setText(Tips.getCourse()+"\n@"+Tips.getLocation());
@@ -506,12 +548,13 @@ public class CalendarWeek {
         });
         
         Button sat5 = new Button();
-        sat5.setText("+");
+        sat5.setText("");
      	sat5.setMinSize(89, 70);
      	sat5.setMaxSize(89, 70);
         sat5.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+            	Tips.getName("Sat5");
             	Tips.launch();
                 System.out.println("!");
                 sat5.setText(Tips.getCourse()+"\n@"+Tips.getLocation());
@@ -519,24 +562,26 @@ public class CalendarWeek {
         });
         
         Button sat6 = new Button();
-        sat6.setText("+");
+        sat6.setText("");
      	sat6.setMinSize(89, 70);
      	sat6.setMaxSize(89, 70);
         sat6.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+            	Tips.getName("Sat6");
             	Tips.launch();
                 System.out.println("!");
                 sat6.setText(Tips.getCourse()+"\n@"+Tips.getLocation());
             }
         });
         Button sun1 = new Button();
-        sun1.setText("+");
+        sun1.setText("");
      	sun1.setMinSize(89, 70);
      	sun1.setMaxSize(89, 70);
         sun1.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+            	Tips.getName("Sun1");
             	Tips.launch();
                 System.out.println("!");
                 sun1.setText(Tips.getCourse()+"\n@"+Tips.getLocation());
@@ -544,12 +589,13 @@ public class CalendarWeek {
         });
         
         Button sun2 = new Button();
-        sun2.setText("+");
+        sun2.setText("");
      	sun2.setMinSize(89, 70);
      	sun2.setMaxSize(89, 70);
         sun2.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+            	Tips.getName("Sun2");
             	Tips.launch();
                 System.out.println("!");
                 sun2.setText(Tips.getCourse()+"\n@"+Tips.getLocation());
@@ -557,12 +603,13 @@ public class CalendarWeek {
         });
         
         Button sun3 = new Button();
-        sun3.setText("+");
+        sun3.setText("");
      	sun3.setMinSize(89, 70);
      	sun3.setMaxSize(89, 70);
         sun3.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+            	Tips.getName("Sun3");
             	Tips.launch();
                 System.out.println("!");
                 sun3.setText(Tips.getCourse()+"\n@"+Tips.getLocation());
@@ -570,12 +617,13 @@ public class CalendarWeek {
         });
         
         Button sun4 = new Button();
-        sun4.setText("+");
+        sun4.setText("");
      	sun4.setMinSize(89, 70);
      	sun4.setMaxSize(89, 70);
         sun4.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+            	Tips.getName("Sun4");
             	Tips.launch();
                 System.out.println("!");
                 sun4.setText(Tips.getCourse()+"\n@"+Tips.getLocation());
@@ -583,12 +631,13 @@ public class CalendarWeek {
         });
         
         Button sun5 = new Button();
-        sun5.setText("+");
+        sun5.setText("");
      	sun5.setMinSize(89, 70);
      	sun5.setMaxSize(89, 70);
         sun5.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+            	Tips.getName("Sun5");
             	Tips.launch();
                 System.out.println("!");
                 sun5.setText(Tips.getCourse()+"\n@"+Tips.getLocation());
@@ -596,12 +645,13 @@ public class CalendarWeek {
         });
         
         Button sun6 = new Button();
-        sun6.setText("+");
+        sun6.setText("");
      	sun6.setMinSize(89, 70);
      	sun6.setMaxSize(89, 70);
         sun6.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+            	Tips.getName("Sun6");
             	Tips.launch();
                 System.out.println("!");
                 sun6.setText(Tips.getCourse()+"\n@"+Tips.getLocation());
@@ -680,5 +730,11 @@ public class CalendarWeek {
         
 		return root;
 	}
-
+	
+	public String[] set(String name) throws Exception{
+		String[] array = new String[4];
+		database information = new database(); 
+		array = information.searchTime("schedule", name);
+		return array;
+	}
 }

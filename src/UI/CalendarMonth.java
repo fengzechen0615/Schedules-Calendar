@@ -13,8 +13,8 @@ public class CalendarMonth {
 	
 	private static BorderPane border = new BorderPane();
 	private static CalendarMonthPage calendar=new CalendarMonthPage();
-	private static Button pre_year=new Button("Last Year");
-	private static Button next_year=new Button("Next Year");
+	private static Button pre_day=new Button("Last Day");
+	private static Button next_day=new Button("Next Day");
 	private static Button pre_month=new Button("Last Month");
 	private static Button next_month=new Button("Next Month");
 	private static TextField text_year=new TextField(""+calendar.getYear());
@@ -23,7 +23,7 @@ public class CalendarMonth {
 	private static Label showdate=new Label(calendar.getYear() + "/" + calendar.getMonth() + "/" + calendar.getDay());
 	
 	public static Button getpreyear(){
-		return pre_year;
+		return pre_day;
 	}
 	
 	public static Button getpremonth(){
@@ -47,7 +47,7 @@ public class CalendarMonth {
 	}
 	
 	public static Button getnextyear(){
-		return next_year;
+		return next_day;
 	}
 	
 	
@@ -90,25 +90,50 @@ public class CalendarMonth {
                 calendar.setDay(day);
                 calendar.setMonthPage();
                 showdate.setText(calendar.getYear() + "/" + calendar.getMonth() + "/" + calendar.getDay());
+                text_day.setText(calendar.getDay()+"");
+                CalendarDay.date=""+calendar.getYear()+calendar.getMonth()+calendar.getDay();
+                CalendarDay.LabelChange();
+                try {
+					CalendarDay.readDate();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
 		});
 		
 		//按钮和text文本已经备好了，你看着安吧，功能都没啥问题
 		
-		pre_year.setOnAction(event -> {//上一年
-            int year = calendar.getYear() - 1;
-            calendar.setYear(year);
-            text_year.setText(year + "");
+		pre_day.setOnAction(event -> {//上一年
+            int day = calendar.getDay() - 1;
+            calendar.setDay(day);
+            text_day.setText(day + "");
             calendar.setMonthPage();
             showdate.setText(calendar.getYear() + "/" + calendar.getMonth() + "/" + calendar.getDay());
+            CalendarDay.date=""+calendar.getYear()+calendar.getMonth()+calendar.getDay();
+            CalendarDay.LabelChange();
+            try {
+				CalendarDay.readDate();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         });
 		
-        next_year.setOnAction(event -> {//next year
-            int year = calendar.getYear() + 1;
-            calendar.setYear(year);
-            text_year.setText(year + "");
+        next_day.setOnAction(event -> {//next year
+            int day = calendar.getDay() + 1;
+            calendar.setDay(day);
+            text_day.setText(day + "");
             calendar.setMonthPage();
             showdate.setText(calendar.getYear() + "/" + calendar.getMonth() + "/" + calendar.getDay());
+            CalendarDay.date=""+calendar.getYear()+calendar.getMonth()+calendar.getDay();
+            CalendarDay.LabelChange();
+            try {
+				CalendarDay.readDate();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         });
         
         pre_month.setOnAction(event -> {//last month
@@ -117,15 +142,34 @@ public class CalendarMonth {
                 calendar.setMonth(12);
                 month=12;
                 text_month.setText("12");
+                text_day.setText("1");
                 calendar.setYear(calendar.getYear()-1);
                 calendar.setMonthPage();
                 text_year.setText(calendar.getYear()+"");
                 showdate.setText(calendar.getYear() + "/" + calendar.getMonth() + "/" + calendar.getDay());
-            } else {
+                CalendarDay.date=""+calendar.getYear()+calendar.getMonth()+calendar.getDay();
+                CalendarDay.LabelChange();
+                try {
+					CalendarDay.readDate();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+            } 
+            else {
                 calendar.setMonth(month);
                 text_month.setText(month + "");
+                text_day.setText("1");
                 calendar.setMonthPage();
                 showdate.setText(calendar.getYear() + "/" + calendar.getMonth() + "/" + calendar.getDay());
+                CalendarDay.date=""+calendar.getYear()+calendar.getMonth()+calendar.getDay();
+                CalendarDay.LabelChange();
+                try {
+					CalendarDay.readDate();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
             System.out.println(calendar.getMonth());
         });
@@ -136,26 +180,51 @@ public class CalendarMonth {
             	calendar.setMonth(1);
             	month=1;
             	text_month.setText("1");
-            	
+            	text_day.setText("1");
                 calendar.setYear(calendar.getYear()+1);
                 text_year.setText(calendar.getYear()+"");
                 calendar.setMonthPage();
                 showdate.setText(calendar.getYear() + "/" + calendar.getMonth() + "/" + calendar.getDay());
-            } else {
+                CalendarDay.date=""+calendar.getYear()+calendar.getMonth()+calendar.getDay();
+                CalendarDay.LabelChange();
+                try {
+					CalendarDay.readDate();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+            }
+         
+        	else {
                 calendar.setMonth(month);
                 text_month.setText(month + "");
+                text_day.setText("1");
                 calendar.setMonthPage();
                 showdate.setText(calendar.getYear() + "/" + calendar.getMonth() + "/" + calendar.getDay());
+                CalendarDay.date=""+calendar.getYear()+calendar.getMonth()+calendar.getDay();
+                CalendarDay.LabelChange();
+                try {
+					CalendarDay.readDate();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
             }
-            System.out.println(calendar.getMonth());
+            
         });
         
         text_year.setOnAction(event -> {//输入年份
             int year = Integer.parseInt(text_year.getText());
             calendar.setYear(year);
             calendar.setMonthPage();
-            
+            CalendarDay.date=""+calendar.getYear()+calendar.getMonth()+calendar.getDay();
             showdate.setText(calendar.getYear() + "/" + calendar.getMonth() + "/" + calendar.getDay());
+            CalendarDay.LabelChange();
+            try {
+				CalendarDay.readDate();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         });
         
         text_month.setOnAction(event -> {//输入月份
@@ -163,6 +232,14 @@ public class CalendarMonth {
             calendar.setMonth(month);
             calendar.setMonthPage();
             showdate.setText(calendar.getYear() + "/" + calendar.getMonth() + "/" + calendar.getDay() + "/");
+            CalendarDay.date=""+calendar.getYear()+calendar.getMonth()+calendar.getDay();
+            CalendarDay.LabelChange();
+            try {
+				CalendarDay.readDate();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         });
 			
         text_day.setOnAction(event -> {//输入月份
@@ -170,6 +247,14 @@ public class CalendarMonth {
 			calendar.setDay(day);
             calendar.setMonthPage();
             showdate.setText(calendar.getYear() + "/" + calendar.getMonth() + "/" + calendar.getDay() + "/");
+            CalendarDay.date=""+calendar.getYear()+calendar.getMonth()+calendar.getDay();
+            CalendarDay.LabelChange();
+            try {
+				CalendarDay.readDate();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         });
 		return gridMonth;
 	}

@@ -31,7 +31,10 @@ public class CalendarDay {
 			new Staff("05:00"," "," "),
 			new Staff("06:00"," "," "),
 			new Staff("07:00"," "," "));
-	
+	private static CalendarMonthPage calendar=new CalendarMonthPage();
+	private static Label sum = new Label();
+	public static String date=""+calendar.getYear()+calendar.getMonth()+calendar.getDay();
+	public static String dateShow=""+calendar.getYear()+"年"+calendar.getMonth()+"月"+calendar.getDay()+"日";
 	public static BorderPane getDay() {
 		BorderPane borderPane = new BorderPane();
 		
@@ -55,14 +58,39 @@ public class CalendarDay {
 		{
 			if(i<j)
 			{
-				System.out.println(array[i][0]+"/"+array[i][1]+"/"+array[i][2]+"/"+array[i][3]);
 				staff[i]=new Staff(array[i][1],array[i][2],array[i][3]);
 				data.add(staff[i]);
-				System.out.println(staff[i].getTime()+"/"+staff[i].getCourse()+"/"+staff[i].getThings());
+				System.out.println(array[i][0]);
 				i++;
 			}
 			else
 			{
+				System.out.println(array[i][0]);
+				data.add(new Staff(array[i][1],array[i][2],array[i][3]));
+				i++;
+			}
+		}
+	}
+	
+	public static void readDate() throws Exception
+	{
+		String [][] array=new String[50][4];
+		database db=new database();
+		array=db.searchDate("todolist",date+"");
+		int i=0,j=data.size();
+		data.clear();
+		while(array[i][0]!=null)
+		{
+			if(i<j)
+			{
+				staff[i]=new Staff(array[i][1],array[i][2],array[i][3]);
+				data.add(staff[i]);
+				System.out.println(array[i][0]);
+				i++;
+			}
+			else
+			{
+				System.out.println(array[i][0]);
 				data.add(new Staff(array[i][1],array[i][2],array[i][3]));
 				i++;
 			}
@@ -89,9 +117,27 @@ public class CalendarDay {
 		TimeCol.setCellFactory(cellFactory);
 		TimeCol.setOnEditCommit((CellEditEvent<Staff,String> t)->
 		{
+			CalendarMonthPage c=new CalendarMonthPage();
 			((Staff) t.getTableView().getItems().get(
 					t.getTablePosition().getRow())).setTime(
 							t.getNewValue());
+			data.set(t.getTablePosition().getRow(), (Staff) t.getTableView().getItems().get(
+					t.getTablePosition().getRow()));
+			String[] args=new String[4];
+			args[0]=""+c.getYear()+c.getMonth()+c.getDay();
+			args[1]=""+data.get(t.getTablePosition().getRow()).getTime();
+			args[2]=""+data.get(t.getTablePosition().getRow()).getCourse();
+			args[3]=""+data.get(t.getTablePosition().getRow()).getThings();	
+			System.out.println(args[0]+"/"+args[1]+"/"+args[2]+"/"+args[3]);
+			try {
+				db.updateTime(args, "todolist");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			System.out.println(data.get(t.getTablePosition().getRow()).getTime()+"/"
+					+data.get(t.getTablePosition().getRow()).getCourse()+"/"
+					+data.get(t.getTablePosition().getRow()).getThings());
+			
 		});
 				
 		TableColumn<Staff,String> CourseCol=new TableColumn<>("Course");
@@ -102,9 +148,27 @@ public class CalendarDay {
 		CourseCol.setCellFactory(cellFactory);
 		CourseCol.setOnEditCommit((CellEditEvent<Staff,String> t)->
 		{
+			CalendarMonthPage c=new CalendarMonthPage();
 			((Staff) t.getTableView().getItems().get(
 					t.getTablePosition().getRow())).setCourse(
 							t.getNewValue());
+			data.set(t.getTablePosition().getRow(), (Staff) t.getTableView().getItems().get(
+					t.getTablePosition().getRow()));
+			String[] args=new String[4];
+			args[0]=""+c.getYear()+c.getMonth()+c.getDay();
+			args[1]=""+data.get(t.getTablePosition().getRow()).getTime();
+			args[2]=""+data.get(t.getTablePosition().getRow()).getCourse();
+			args[3]=""+data.get(t.getTablePosition().getRow()).getThings();	
+			System.out.println(args[0]+"/"+args[1]+"/"+args[2]+"/"+args[3]);
+			try {
+				db.update(args, "todolist");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			System.out.println(data.get(t.getTablePosition().getRow()).getTime()+"/"
+					+data.get(t.getTablePosition().getRow()).getCourse()+"/"
+					+data.get(t.getTablePosition().getRow()).getThings());
+			
 		});
 		
 		TableColumn<Staff,String> ThingsCol=new TableColumn<>("Things");
@@ -115,12 +179,30 @@ public class CalendarDay {
 		ThingsCol.setCellFactory(cellFactory);
 		ThingsCol.setOnEditCommit((CellEditEvent<Staff,String> t)->
 		{
+			CalendarMonthPage c=new CalendarMonthPage();
 			((Staff) t.getTableView().getItems().get(
 					t.getTablePosition().getRow())).setThings(
 							t.getNewValue());
+			data.set(t.getTablePosition().getRow(), (Staff) t.getTableView().getItems().get(
+					t.getTablePosition().getRow()));
+			String[] args=new String[4];
+			args[0]=""+c.getYear()+c.getMonth()+c.getDay();
+			args[1]=""+data.get(t.getTablePosition().getRow()).getTime();
+			args[2]=""+data.get(t.getTablePosition().getRow()).getCourse();
+			args[3]=""+data.get(t.getTablePosition().getRow()).getThings();	
+			System.out.println(args[0]+"/"+args[1]+"/"+args[2]+"/"+args[3]);
+			try {
+				db.update(args, "todolist");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			System.out.println(data.get(t.getTablePosition().getRow()).getTime()+"/"
+					+data.get(t.getTablePosition().getRow()).getCourse()+"/"
+					+data.get(t.getTablePosition().getRow()).getThings());
 		});
+		
 		try {
-			read();
+			readDate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -170,7 +252,7 @@ public class CalendarDay {
 			addCourse.clear();
 			addThings.clear();
 			try {
-				db.wirteInSingle(str, "todolist");
+				db.wirteIn(str, "todolist");
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
@@ -184,12 +266,17 @@ public class CalendarDay {
 		flow.setPadding(new Insets(5));
 		flow.setPrefWidth(330);
 		
-		Label sum = new Label("sum");
 		sum.setMaxWidth(330);
+		sum.setText(date);
 		flow.getChildren().add(sum);
-		
 		return flow;
 	}
+    
+    public static void LabelChange()
+    {
+    	sum.setText(date);
+    }
+    
   
     public static void Store()
     {
@@ -203,7 +290,7 @@ public class CalendarDay {
     		database[i][3]=data.get(i).getThings();
     	}
     	try {
-			db.wirteIn(database, "todolist");
+			db.wirteInSingle(database, "todolist");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
