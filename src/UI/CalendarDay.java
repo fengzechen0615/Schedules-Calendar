@@ -117,6 +117,7 @@ public class CalendarDay {
 		TimeCol.setCellFactory(cellFactory);
 		TimeCol.setOnEditCommit((CellEditEvent<Staff,String> t)->
 		{
+			@SuppressWarnings("unused")
 			CalendarMonthPage c=new CalendarMonthPage();
 			((Staff) t.getTableView().getItems().get(
 					t.getTablePosition().getRow())).setTime(
@@ -180,6 +181,7 @@ public class CalendarDay {
 		ThingsCol.setCellFactory(cellFactory);
 		ThingsCol.setOnEditCommit((CellEditEvent<Staff,String> t)->
 		{
+			@SuppressWarnings("unused")
 			CalendarMonthPage c=new CalendarMonthPage();
 			((Staff) t.getTableView().getItems().get(
 					t.getTablePosition().getRow())).setThings(
@@ -244,6 +246,7 @@ public class CalendarDay {
 		{
 			data.add(new Staff(addTime.getText(),addCourse.getText(),addThings.getText()));
 			String[] str=new String[4];
+			@SuppressWarnings("unused")
 			CalendarMonthPage c=new CalendarMonthPage();
 			str[0]=""+date;
 			str[1]=addTime.getText();
@@ -282,7 +285,8 @@ public class CalendarDay {
     public static void Store()
     {
     	String[][] database = new String[50][4];
-    	CalendarMonthPage c=new CalendarMonthPage();
+    	@SuppressWarnings("unused")
+		CalendarMonthPage c=new CalendarMonthPage();
     	for(int i=0;i<data.size();i++)
     	{
     		database[i][0]=date;
