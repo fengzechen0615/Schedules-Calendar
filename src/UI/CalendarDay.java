@@ -124,7 +124,7 @@ public class CalendarDay {
 			data.set(t.getTablePosition().getRow(), (Staff) t.getTableView().getItems().get(
 					t.getTablePosition().getRow()));
 			String[] args=new String[4];
-			args[0]=""+c.getYear()+c.getMonth()+c.getDay();
+			args[0]=""+date;
 			args[1]=""+data.get(t.getTablePosition().getRow()).getTime();
 			args[2]=""+data.get(t.getTablePosition().getRow()).getCourse();
 			args[3]=""+data.get(t.getTablePosition().getRow()).getThings();	
@@ -187,7 +187,7 @@ public class CalendarDay {
 			data.set(t.getTablePosition().getRow(), (Staff) t.getTableView().getItems().get(
 					t.getTablePosition().getRow()));
 			String[] args=new String[4];
-			args[0]=""+c.getYear()+c.getMonth()+c.getDay();
+			args[0]=""+date;
 			args[1]=""+data.get(t.getTablePosition().getRow()).getTime();
 			args[2]=""+data.get(t.getTablePosition().getRow()).getCourse();
 			args[3]=""+data.get(t.getTablePosition().getRow()).getThings();	
@@ -245,7 +245,7 @@ public class CalendarDay {
 			data.add(new Staff(addTime.getText(),addCourse.getText(),addThings.getText()));
 			String[] str=new String[4];
 			CalendarMonthPage c=new CalendarMonthPage();
-			str[0]=""+c.getYear()+c.getMonth()+c.getDay();
+			str[0]=""+date;
 			str[1]=addTime.getText();
 			str[2]=addCourse.getText();
 			str[3]=addThings.getText();
@@ -285,7 +285,7 @@ public class CalendarDay {
     	CalendarMonthPage c=new CalendarMonthPage();
     	for(int i=0;i<data.size();i++)
     	{
-    		database[i][0]=""+c.getYear()+c.getMonth()+c.getDay();
+    		database[i][0]=date;
     		database[i][1]=data.get(i).getTime();
     		database[i][2]=data.get(i).getCourse();
     		database[i][3]=data.get(i).getThings();
