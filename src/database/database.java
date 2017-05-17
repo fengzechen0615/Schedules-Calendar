@@ -11,7 +11,7 @@ public class database {
 	
 	public static void main(String[] args) throws Exception{
 		database db = new database();
-		System.out.println(db.searchTime("schedule", "Mon1")[2]);
+		db.setdatabase();
 	}
 	
 	public void setdatabase() throws Exception{
@@ -21,9 +21,9 @@ public class database {
 		String password = "yibo950615";
 		Connection connection = (Connection) DriverManager.getConnection(url,user,password);
 		Statement statement = (Statement) connection.createStatement();
-	    String sql = "CREATE TABLE schedule(date CHAR(10), time CHAR(20) unique, course CHAR(30), things CHAR(30))";       
+	    String sql = "CREATE TABLE if not exists schedule(date CHAR(10), time CHAR(20) unique, course CHAR(30), things CHAR(30))";       
 	    statement.executeUpdate(sql);
-	    sql = "CREATE TABLE todoList(date CHAR(10), time CHAR(20) unique, course CHAR(30), things CHAR(30))";
+	    sql = "CREATE TABLE if not exists todoList(date CHAR(10), time time unique, course CHAR(30), things CHAR(30))";
 	    statement.execute(sql);    
 		statement.close();
 		connection.close();
