@@ -8,32 +8,55 @@ import java.sql.Statement;
 import com.mysql.jdbc.PreparedStatement;
 
 public class database {
-	
 	public static void main(String[] args) throws Exception{
-		database db = new database();
-		db.setdatabase();
+		database a = new database();
+		a.setUp(getuser(), getpassword());
+	}
+	private static String user;
+	private static String password;
+	
+	public void setuandp(String u,String p){
+		this.user = u;
+		this.password = p;
+	}
+	
+	public static String getuser(){
+		return user;
+	}
+	
+	public static String getpassword(){
+		return password;
+	}
+	
+	public void setUp(String u,String p) throws Exception{
+		setuandp(u,p);
+		setdatabase();
+		for(int i = 1; i <= 42;i++){
+			String number = Integer.toString(i);
+			SetUpWriteIn(number);
+		}
 	}
 	
 	public void setdatabase() throws Exception{
 		Class.forName("com.mysql.jdbc.Driver");
-		String url = "jdbc:mysql://localhost:3306/employee";
-		String user = "root";
-		String password = "yibo950615";
+		String url = "jdbc:mysql://localhost:3306/mysql";
+		String user = getuser();
+		String password = getpassword();
 		Connection connection = (Connection) DriverManager.getConnection(url,user,password);
 		Statement statement = (Statement) connection.createStatement();
-	    String sql = "CREATE TABLE if not exists schedule(date CHAR(10), time CHAR(20) unique, course CHAR(30), things CHAR(30))";       
+	    String sql = "CREATE TABLE if not exists schedule(date CHAR(10), time time unique, course CHAR(30), things CHAR(30))";       
 	    statement.executeUpdate(sql);
 	    sql = "CREATE TABLE if not exists todoList(date CHAR(10), time time unique, course CHAR(30), things CHAR(30))";
-	    statement.execute(sql);    
+	    statement.execute(sql); 
 		statement.close();
 		connection.close();
 	}
 	
 	public void wirteIn(String[] a,String b) throws Exception{
 		Class.forName("com.mysql.jdbc.Driver");
-		String url = "jdbc:mysql://localhost:3306/employee";
-		String user = "root";
-		String password = "yibo950615";
+		String url = "jdbc:mysql://localhost:3306/mysql";
+		String user = getuser();
+		String password = getpassword();
 		Connection connection = (Connection) DriverManager.getConnection(url,user,password);
 	    String sql = "INSERT INTO "+ b +" (date, time, course, things) VALUES(?,?,?,?)";
 	    PreparedStatement pstmt;
@@ -54,11 +77,32 @@ public class database {
         connection.close();
 	}
 	
+	public void SetUpWriteIn(String a) throws Exception{
+		Class.forName("com.mysql.jdbc.Driver");
+		String url = "jdbc:mysql://localhost:3306/mysql";
+		String user = getuser();
+		String password = getpassword();
+		Connection connection = (Connection) DriverManager.getConnection(url,user,password);
+	    String sql = "INSERT INTO schedule (time) SELECT ? FROM dual WHERE not exists (select * from schedule where time  = ?);";
+	    PreparedStatement pstmt;
+		int i = 0;
+	    try {
+	    	pstmt = (PreparedStatement) connection.prepareStatement(sql);
+	    	pstmt.setString(1, a);
+	    	pstmt.setString(2, a);
+	        i = pstmt.executeUpdate();
+	        pstmt.close();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+        connection.close();
+	}
+	
 	public void updateTime(String[] a,String b) throws Exception{
 		Class.forName("com.mysql.jdbc.Driver");
-		String url = "jdbc:mysql://localhost:3306/employee";
-		String user = "root";
-		String password = "yibo950615";
+		String url = "jdbc:mysql://localhost:3306/mysql";
+		String user = getuser();
+		String password = getpassword();
 		Connection connection = (Connection) DriverManager.getConnection(url,user,password);	
 		Statement statement = (Statement) connection.createStatement();
 		String sql = " update " +b+ " set time ='"+ a[1] +"' where course = '"+a[2]+"'";
@@ -69,16 +113,16 @@ public class database {
 	
 	public void update(String[] a,String b)throws Exception{
 		Class.forName("com.mysql.jdbc.Driver");
-		String url = "jdbc:mysql://localhost:3306/employee";
-		String user = "root";
-		String password = "yibo950615";
+		String url = "jdbc:mysql://localhost:3306/mysql";
+		String user = getuser();
+		String password = getpassword();
 		Connection connection = (Connection) DriverManager.getConnection(url,user,password);
 		Statement statement = (Statement) connection.createStatement();
 		String sql = " update " +b+ " set course ='"+ a[2] +"' where time = '"+a[1]+"'";
 		statement.executeUpdate(sql);
-		sql =" update " +b+ " set date ='"+ a[0] +"' where time = '"+a[1]+"'";
+		sql =" update " +b+ " set date ='"+ a[0] +"' where time = "+a[1]+"";
 		statement.executeUpdate(sql);
-		sql =" update " +b+ " set things ='"+ a[3] +"' where time = '"+a[1]+"'";
+		sql =" update " +b+ " set things ='"+ a[3] +"' where time = "+a[1]+"";
 		statement.executeUpdate(sql);
 		statement.close();
 		connection.close();
@@ -86,9 +130,9 @@ public class database {
 	
 	public void wirteInSingle(String[][] a,String b) throws Exception{
 		Class.forName("com.mysql.jdbc.Driver");
-		String url = "jdbc:mysql://localhost:3306/employee";
-		String user = "root";
-		String password = "yibo950615";
+		String url = "jdbc:mysql://localhost:3306/mysql";
+		String user = getuser();
+		String password = getpassword();
 		Connection connection = (Connection) DriverManager.getConnection(url,user,password);
 	    String sql = "INSERT INTO "+ b +" (date, time, course, things) VALUES(?,?,?,?)";
 	    PreparedStatement pstmt;
@@ -114,9 +158,9 @@ public class database {
 
 	public void delete(String a,String b) throws Exception{
 		Class.forName("com.mysql.jdbc.Driver");
-		String url = "jdbc:mysql://localhost:3306/employee";
-		String user = "root";
-		String password = "yibo950615";
+		String url = "jdbc:mysql://localhost:3306/mysql";
+		String user = getuser();
+		String password = getpassword();
 		Connection connection = (Connection) DriverManager.getConnection(url,user,password);
 		String sql = "DELETE from "+ b +" where time = "+ a;
 		PreparedStatement pstmt;
@@ -134,9 +178,9 @@ public class database {
 	
 	public String[][] search(String b) throws Exception{
 		Class.forName("com.mysql.jdbc.Driver");
-		String url = "jdbc:mysql://localhost:3306/employee";
-		String user = "root";
-		String password = "yibo950615";
+		String url = "jdbc:mysql://localhost:3306/mysql";
+		String user = getuser();
+		String password = getpassword();
 		Connection connection = (Connection) DriverManager.getConnection(url,user,password);
 		Statement statement = (Statement) connection.createStatement();
 		String sql = "SELECT * from "+ b;
@@ -170,8 +214,8 @@ public class database {
 	public String[][] searchDate(String b,String date) throws Exception{
 		Class.forName("com.mysql.jdbc.Driver");
 		String url = "jdbc:mysql://localhost:3306/employee";
-		String user = "root";
-		String password = "yibo950615";
+		String user = getuser();
+		String password = getpassword();
 		Connection connection = (Connection) DriverManager.getConnection(url,user,password);
 		Statement statement = (Statement) connection.createStatement();
 		String sql = "SELECT * from "+ b+" WHERE date = '"+date+"'";
@@ -204,9 +248,9 @@ public class database {
 	
 	public String[] searchTime(String b,String time) throws Exception{
 		Class.forName("com.mysql.jdbc.Driver");
-		String url = "jdbc:mysql://localhost:3306/employee";
-		String user = "root";
-		String password = "yibo950615";
+		String url = "jdbc:mysql://localhost:3306/mysql";
+		String user = getuser();
+		String password = getpassword();
 		Connection connection = (Connection) DriverManager.getConnection(url,user,password);
 		Statement statement = (Statement) connection.createStatement();
 		String sql = "SELECT * from "+ b +" WHERE time = '"+time+"'";
@@ -235,9 +279,9 @@ public class database {
 	
 	public int count(String b) throws Exception{
 		Class.forName("com.mysql.jdbc.Driver");
-		String url = "jdbc:mysql://localhost:3306/employee";
-		String user = "root";
-		String password = "yibo950615";
+		String url = "jdbc:mysql://localhost:3306/mysql";
+		String user = getuser();
+		String password = getpassword();
 		Connection connection = (Connection) DriverManager.getConnection(url,user,password);
 		Statement statement = (Statement) connection.createStatement();
 		String sql = "SELECT count(time) from "+ b;
