@@ -118,33 +118,7 @@ public class Main extends Application {
                 primaryStage.setResizable(false);
                 primaryStage.setX(screenWidth/2 - 400);
                 primaryStage.setY(screenHight/2 - 300);
-                  
-            /*  //获取用户名，密码的值 
-                String userName = userTextField.getText(); 
-                String passWord = passwdField.getText(); 
-                //建立连接查询数据库 
-                conn = JdbcUtil.getConn(); 
-                String sql = "select t.*, t.rowid from itcsys_user t where t.usercode='"+userName+"' and t.username='"+passWord+"'"; 
-                try { 
-                    ps = conn.prepareStatement(sql); 
-                    rs = ps.executeQuery(); 
-                    if(rs.next()){ 
-                        actiontarget.setText("登陆成功"); 
-                        grid.setVisible(false); 
-                        //表格面板 
-                        TablePane tp = new TablePane(); 
-                        //加到场景中 
-                        Scene tpScene = new Scene(tp,500,500); 
-                        //切换舞台场景为表格面板 
-                        primaryStage.setScene(tpScene); 
-                    }else{ 
-                        actiontarget.setText("登陆失败"); 
-                    } 
-                } catch (SQLException e) { 
-                    e.printStackTrace(); 
-                }finally{ 
-                    JdbcUtil.close(rs,ps,conn); 
-                }*/  
+                   
             }  
         });  
         

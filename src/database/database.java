@@ -44,9 +44,9 @@ public class database {
 		String password = getpassword();
 		Connection connection = (Connection) DriverManager.getConnection(url,user,password);
 		Statement statement = (Statement) connection.createStatement();
-	    String sql = "CREATE TABLE if not exists schedule(date CHAR(10), time time unique, course CHAR(30), things CHAR(30))";       
+	    String sql = "CREATE TABLE if not exists schedule(date CHAR(10), time CHAR(30) unique, course CHAR(30), things CHAR(30))";       
 	    statement.executeUpdate(sql);
-	    sql = "CREATE TABLE if not exists todoList(date CHAR(10), time time unique, course CHAR(30), things CHAR(30))";
+	    sql = "CREATE TABLE if not exists todoList(date CHAR(10), time CHAR(30) unique, course CHAR(30), things CHAR(30))";
 	    statement.execute(sql); 
 		statement.close();
 		connection.close();
@@ -213,7 +213,7 @@ public class database {
 	
 	public String[][] searchDate(String b,String date) throws Exception{
 		Class.forName("com.mysql.jdbc.Driver");
-		String url = "jdbc:mysql://localhost:3306/employee";
+		String url = "jdbc:mysql://localhost:3306/mysql";
 		String user = getuser();
 		String password = getpassword();
 		Connection connection = (Connection) DriverManager.getConnection(url,user,password);

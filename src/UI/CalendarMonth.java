@@ -1,10 +1,14 @@
 package UI;
 
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
@@ -102,8 +106,20 @@ public class CalendarMonth {
             }
 		});
 		
-		//按钮和text文本已经备好了，你看着安吧，功能都没啥问题
+		calendar.setOnMouseClicked(new EventHandler<MouseEvent>() {
+		    @Override
+		    public void handle(MouseEvent mouseEvent) {
+		        if(mouseEvent.getButton().equals(MouseButton.PRIMARY)){
+		            if(mouseEvent.getClickCount() == 2){
+		                System.out.println("Double clicked");
+		            }
+		        }
+		    }
+		});
 		
+		
+		
+				
 		pre_day.setOnAction(event -> {//上一年
             int day = calendar.getDay() - 1;
             calendar.setDay(day);
