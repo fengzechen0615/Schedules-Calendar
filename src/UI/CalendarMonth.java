@@ -105,21 +105,7 @@ public class CalendarMonth {
 				}
             }
 		});
-		
-		calendar.setOnMouseClicked(new EventHandler<MouseEvent>() {
-		    @Override
-		    public void handle(MouseEvent mouseEvent) {
-		        if(mouseEvent.getButton().equals(MouseButton.PRIMARY)){
-		            if(mouseEvent.getClickCount() == 2){
-		                System.out.println("Double clicked");
-		            }
-		        }
-		    }
-		});
-		
-		
-		
-				
+						
 		pre_day.setOnAction(event -> {//上一年
             int day = calendar.getDay() - 1;
             calendar.setDay(day);
