@@ -1,10 +1,5 @@
 package UI;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import com.sun.glass.ui.Pixels.Format;
-
 import database.database;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,14 +19,20 @@ import javafx.util.Callback;
 
 
 public class CalendarDay {
-	private static Warning w=new Warning();
+
 	private static TableView<Staff> table= new TableView<>();
 	private static database db=new database();
 	public static Staff[] staff=new Staff[50];
-	private final static ObservableList<Staff> data =FXCollections.observableArrayList();
-			
+	private final static ObservableList<Staff> data =FXCollections.observableArrayList(new Staff("00:00"," "," "),
+			new Staff("01:00"," "," "),
+			new Staff("02:00"," "," "),
+			new Staff("03:00"," "," "),
+			new Staff("04:00"," "," "),
+			new Staff("05:00"," "," "),
+			new Staff("06:00"," "," "),
+			new Staff("07:00"," "," "));
 	private static CalendarMonthPage calendar=new CalendarMonthPage();
-	public  static Label sum = new Label();
+	private static Label sum = new Label();
 	public static String date=""+calendar.getYear()+calendar.getMonth()+calendar.getDay();
 	public static String dateShow=""+calendar.getYear()+"年"+calendar.getMonth()+"月"+calendar.getDay()+"日";
 	public static BorderPane getDay() {
@@ -45,9 +46,6 @@ public class CalendarDay {
 		
 		return borderPane;
 	}
-	
-	
-	
 	
 	public static void read() throws Exception
 	{
@@ -119,41 +117,27 @@ public class CalendarDay {
 		TimeCol.setCellFactory(cellFactory);
 		TimeCol.setOnEditCommit((CellEditEvent<Staff,String> t)->
 		{
-			String str="";
-			str=((Staff) t.getTableView().getItems().get(
-					t.getTablePosition().getRow())).getTime();
-			if(checkFormat(t.getNewValue()))
-			{
-				((Staff) t.getTableView().getItems().get(
+			@SuppressWarnings("unused")
+			CalendarMonthPage c=new CalendarMonthPage();
+			((Staff) t.getTableView().getItems().get(
 					t.getTablePosition().getRow())).setTime(
 							t.getNewValue());
-				data.set(t.getTablePosition().getRow(), (Staff) t.getTableView().getItems().get(
+			data.set(t.getTablePosition().getRow(), (Staff) t.getTableView().getItems().get(
 					t.getTablePosition().getRow()));
-				String[] args=new String[4];
-				args[0]=""+date;
-				args[1]=""+data.get(t.getTablePosition().getRow()).getTime();
-				args[2]=""+data.get(t.getTablePosition().getRow()).getCourse();
-				args[3]=""+data.get(t.getTablePosition().getRow()).getThings();	
-			
-				try {
-					db.updateTime(args, "todolist");
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+			String[] args=new String[4];
+			args[0]=""+date;
+			args[1]=""+data.get(t.getTablePosition().getRow()).getTime();
+			args[2]=""+data.get(t.getTablePosition().getRow()).getCourse();
+			args[3]=""+data.get(t.getTablePosition().getRow()).getThings();	
+			System.out.println(args[0]+"/"+args[1]+"/"+args[2]+"/"+args[3]);
+			try {
+				db.updateTime(args, "todolist");
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-			else
-			{
-				w.launch();
-				((Staff) t.getTableView().getItems().get(
-						t.getTablePosition().getRow())).setTime(
-								str);
-					data.set(t.getTablePosition().getRow(), (Staff) t.getTableView().getItems().get(
-						t.getTablePosition().getRow()));
-					data.set(t.getTablePosition().getRow()+1, (Staff) t.getTableView().getItems().get(
-							t.getTablePosition().getRow()+1));
-				
-			}
-			
+			System.out.println(data.get(t.getTablePosition().getRow()).getTime()+"/"
+					+data.get(t.getTablePosition().getRow()).getCourse()+"/"
+					+data.get(t.getTablePosition().getRow()).getThings());
 			
 		});
 				
@@ -177,13 +161,15 @@ public class CalendarDay {
 			args[1]=""+data.get(t.getTablePosition().getRow()).getTime();
 			args[2]=""+data.get(t.getTablePosition().getRow()).getCourse();
 			args[3]=""+data.get(t.getTablePosition().getRow()).getThings();	
-			
+			System.out.println(args[0]+"/"+args[1]+"/"+args[2]+"/"+args[3]);
 			try {
 				db.update(args, "todolist");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
+			System.out.println(data.get(t.getTablePosition().getRow()).getTime()+"/"
+					+data.get(t.getTablePosition().getRow()).getCourse()+"/"
+					+data.get(t.getTablePosition().getRow()).getThings());
 			
 		});
 		
@@ -207,12 +193,15 @@ public class CalendarDay {
 			args[1]=""+data.get(t.getTablePosition().getRow()).getTime();
 			args[2]=""+data.get(t.getTablePosition().getRow()).getCourse();
 			args[3]=""+data.get(t.getTablePosition().getRow()).getThings();	
+			System.out.println(args[0]+"/"+args[1]+"/"+args[2]+"/"+args[3]);
 			try {
 				db.update(args, "todolist");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
+			System.out.println(data.get(t.getTablePosition().getRow()).getTime()+"/"
+					+data.get(t.getTablePosition().getRow()).getCourse()+"/"
+					+data.get(t.getTablePosition().getRow()).getThings());
 		});
 		
 		try {
@@ -255,8 +244,6 @@ public class CalendarDay {
 		
 		addButton.setOnAction((ActionEvent e)->
 		{
-			if(addTime.getText().contains(":")||addTime.getText().contains("："))
-			{
 			data.add(new Staff(addTime.getText(),addCourse.getText(),addThings.getText()));
 			String[] str=new String[4];
 			@SuppressWarnings("unused")
@@ -270,15 +257,8 @@ public class CalendarDay {
 			addThings.clear();
 			try {
 				db.wirteIn(str, "todolist");
-				} 
-			catch (Exception e1) {
+			} catch (Exception e1) {
 				e1.printStackTrace();
-				}
-			}
-			else
-			{
-				w.launch();
-				
 			}
 		});
 		
@@ -301,17 +281,6 @@ public class CalendarDay {
     	sum.setText(date);
     }
     
-    private static boolean  checkFormat(String str)
-    {
-    	if((str.contains(":")||str.contains("：")||str.isEmpty())&&str.length()<=5)
-		{
-    		return true;
-		}
-    	else
-    	{
-    		return false;
-    	}
-    }
   
     public static void Store()
     {
