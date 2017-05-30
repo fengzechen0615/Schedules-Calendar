@@ -5,13 +5,13 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TabPane.TabClosingPolicy;
 
 public class UITabPane {
-	public static Tab tab_day = new Tab("Day");
+//	public static Tab tab_day = new Tab("Day");
 	public static TabPane getTabPane() throws Exception {
 		TabPane tab = new TabPane();
 		tab.setTabClosingPolicy(TabClosingPolicy.UNAVAILABLE);
 		tab.setTabMinWidth(100);
 		
-		//Tab tab_day = new Tab("Day");
+		Tab tab_day = new Tab("Day");
 		tab_day.setContent(CalendarDay.getDay());
 		
 		Tab tab_week = new Tab("Week");
@@ -21,10 +21,12 @@ public class UITabPane {
 		tab_month.setContent(CalendarMonth.getMonth());
 		
 		tab.getTabs().add(tab_day);
+		tab.getSelectionModel().select(tab_day);
 		tab.getTabs().add(tab_week);
 		tab.getTabs().add(tab_month);
 		
 		return tab;
 		
 	}
+	
 }
