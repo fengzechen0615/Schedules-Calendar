@@ -1,5 +1,7 @@
 package UI;
 
+import java.util.Calendar;
+
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -18,6 +20,7 @@ import javafx.scene.layout.StackPane;
 public class CalendarMonth {
 	
 	private static BorderPane border = new BorderPane();
+	private static Calendar c=Calendar.getInstance();
 	private static CalendarMonthPage calendar=new CalendarMonthPage();
 	private static Button pre_day=new Button("Last Day");
 	private static Button next_day=new Button("Next Day");
@@ -56,6 +59,55 @@ public class CalendarMonth {
 		return next_day;
 	}
 	
+	private static void reset()
+	{
+		text_year.setText(""+calendar.getYear());
+		text_month.setText(""+calendar.getMonth());
+		text_day.setText(""+calendar.getDay());
+	}
+	
+	private static void monthdec()
+	{
+		int month = calendar.getMonth() - 1;
+        if (month < 1) {
+            calendar.setMonth(12);
+            month=12;
+            text_month.setText("12");
+            text_day.setText("1");
+            calendar.setYear(calendar.getYear()-1);
+            calendar.setMonthPage();
+            text_year.setText(calendar.getYear()+"");
+            reset();
+            showdate.setText(calendar.getYear() + "/" + calendar.getMonth() + "/" + calendar.getDay());
+            CalendarDay.date=""+calendar.getYear()+calendar.getMonth()+calendar.getDay();
+            CalendarDay.LabelChange();
+            try {
+				CalendarDay.readDate();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        } 
+        else {
+            calendar.setMonth(month);
+            text_month.setText(month + "");
+            text_day.setText("1");
+            calendar.setMonthPage();
+            reset();
+            showdate.setText(calendar.getYear() + "/" + calendar.getMonth() + "/" + calendar.getDay());
+            CalendarDay.date=""+calendar.getYear()+calendar.getMonth()+calendar.getDay();
+            CalendarDay.LabelChange();
+            try {
+				CalendarDay.readDate();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        }
+        
+    }
+    
+    
 	
 	public static BorderPane getMonth() {
 		BorderPane borderPane = new BorderPane();
@@ -95,8 +147,10 @@ public class CalendarMonth {
             if (day > 0 && day < 32) {
                 calendar.setDay(day);
                 calendar.setMonthPage();
+                
                 showdate.setText(calendar.getYear() + "/" + calendar.getMonth() + "/" + calendar.getDay());
                 text_day.setText(calendar.getDay()+"");
+                reset();
                 CalendarDay.date=""+calendar.getYear()+calendar.getMonth()+calendar.getDay();
                 CalendarDay.LabelChange();
                 try {
@@ -108,12 +162,14 @@ public class CalendarMonth {
             }
 		});
 						
-		pre_day.setOnAction(event -> {//上一年
+		pre_day.setOnAction(event -> {
             int day = calendar.getDay() - 1;
+            
             calendar.setDay(day);
             text_day.setText(day + "");
             calendar.setMonthPage();
             showdate.setText(calendar.getYear() + "/" + calendar.getMonth() + "/" + calendar.getDay());
+            reset();
             CalendarDay.date=""+calendar.getYear()+calendar.getMonth()+calendar.getDay();
             CalendarDay.LabelChange();
             try {
@@ -122,22 +178,24 @@ public class CalendarMonth {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-        });
+        }
+            );
 		
-        next_day.setOnAction(event -> {//next year
+        next_day.setOnAction(event -> {
             int day = calendar.getDay() + 1;
             calendar.setDay(day);
             text_day.setText(day + "");
             calendar.setMonthPage();
             showdate.setText(calendar.getYear() + "/" + calendar.getMonth() + "/" + calendar.getDay());
+            reset();
             CalendarDay.date=""+calendar.getYear()+calendar.getMonth()+calendar.getDay();
             CalendarDay.LabelChange();
             try {
 				CalendarDay.readDate();
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+            
         });
         
         pre_month.setOnAction(event -> {//last month
@@ -151,6 +209,7 @@ public class CalendarMonth {
                 calendar.setMonthPage();
                 text_year.setText(calendar.getYear()+"");
                 showdate.setText(calendar.getYear() + "/" + calendar.getMonth() + "/" + calendar.getDay());
+                reset();
                 CalendarDay.date=""+calendar.getYear()+calendar.getMonth()+calendar.getDay();
                 CalendarDay.LabelChange();
                 try {
@@ -166,6 +225,7 @@ public class CalendarMonth {
                 text_day.setText("1");
                 calendar.setMonthPage();
                 showdate.setText(calendar.getYear() + "/" + calendar.getMonth() + "/" + calendar.getDay());
+                reset();
                 CalendarDay.date=""+calendar.getYear()+calendar.getMonth()+calendar.getDay();
                 CalendarDay.LabelChange();
                 try {
@@ -189,6 +249,7 @@ public class CalendarMonth {
                 text_year.setText(calendar.getYear()+"");
                 calendar.setMonthPage();
                 showdate.setText(calendar.getYear() + "/" + calendar.getMonth() + "/" + calendar.getDay());
+                reset();
                 CalendarDay.date=""+calendar.getYear()+calendar.getMonth()+calendar.getDay();
                 CalendarDay.LabelChange();
                 try {
@@ -205,6 +266,7 @@ public class CalendarMonth {
                 text_day.setText("1");
                 calendar.setMonthPage();
                 showdate.setText(calendar.getYear() + "/" + calendar.getMonth() + "/" + calendar.getDay());
+                reset();
                 CalendarDay.date=""+calendar.getYear()+calendar.getMonth()+calendar.getDay();
                 CalendarDay.LabelChange();
                 try {
@@ -215,6 +277,8 @@ public class CalendarMonth {
             }
             
         });
+        
+        
         
         text_year.setOnAction(event -> {//输入年份
             int year = Integer.parseInt(text_year.getText());

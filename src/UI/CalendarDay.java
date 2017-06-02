@@ -1,9 +1,13 @@
 package UI;
 
+import com.sun.prism.paint.Color;
+
 import database.database;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.event.EventTarget;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -12,7 +16,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TableColumn.CellEditEvent;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.util.Callback;
@@ -106,6 +112,42 @@ public class CalendarDay {
 		table.setPrefHeight(600);
 		table.setMaxHeight(800);
 		
+		table.setOnMouseClicked(new EventHandler<MouseEvent>()
+				{
+					public void handle(MouseEvent event) {
+						
+						Double y=event.getY();
+						int a=(int) (y/24);
+						if((a-1)<data.size())
+						{
+							if(data.get(a-1).getCourse().isEmpty() || data.get(a-1).getThings().isEmpty())
+							{
+								sum.setTextFill(javafx.scene.paint.Color.BLUE);
+								sum.setText(data.get(a-1).getTime()+" \n"+
+										"Course: "+data.get(a-1).getCourse()+" \n"+
+										"Event:  "+data.get(a-1).getThings()+" \n"+
+										"\n"+
+										"This Time is not conflict");
+							}
+							else
+							{
+								sum.setTextFill(javafx.scene.paint.Color.RED);
+								sum.setText(data.get(a-1).getTime()+" \n"+
+										"Course: "+data.get(a-1).getCourse()+" \n"+
+										"Event:  "+data.get(a-1).getThings()+" \n"+
+										"\n"+
+										"This Time is conflict,please change your schedule"
+										);
+							}
+						}
+						else
+						{
+							sum.setText(" ");
+						}
+					}
+			
+				});
+		
 		TableColumn<Staff,String> TimeCol=new TableColumn<>("Time");
 		TimeCol.setPrefWidth(60);
 		TimeCol.setMinWidth(60);
@@ -129,7 +171,10 @@ public class CalendarDay {
 				args[1]=""+data.get(t.getTablePosition().getRow()).getTime();
 				args[2]=""+data.get(t.getTablePosition().getRow()).getCourse();
 				args[3]=""+data.get(t.getTablePosition().getRow()).getThings();	
-			
+				sum.setText(args[0]+" \n"
+						  +args[1]+" \n"+
+				"Course: "+args[2]+" \n"+
+				"Event:  "+args[3]+" \n");
 				try {
 					db.updateTime(args, "todolist");
 				} catch (Exception e) {
@@ -172,7 +217,10 @@ public class CalendarDay {
 			args[1]=""+data.get(t.getTablePosition().getRow()).getTime();
 			args[2]=""+data.get(t.getTablePosition().getRow()).getCourse();
 			args[3]=""+data.get(t.getTablePosition().getRow()).getThings();	
-			
+			sum.setText(args[0]+" \n"
+							  +args[1]+" \n"+
+					"Course: "+args[2]+" \n"+
+					"Event:  "+args[3]+" \n");
 			try {
 				db.update(args, "todolist");
 			} catch (Exception e) {
@@ -202,6 +250,10 @@ public class CalendarDay {
 			args[1]=""+data.get(t.getTablePosition().getRow()).getTime();
 			args[2]=""+data.get(t.getTablePosition().getRow()).getCourse();
 			args[3]=""+data.get(t.getTablePosition().getRow()).getThings();	
+			sum.setText(args[0]+" \n"
+					  +args[1]+" \n"+
+			"Course: "+args[2]+" \n"+
+			"Event:  "+args[3]+" \n");
 			try {
 				db.update(args, "todolist");
 			} catch (Exception e) {
@@ -283,7 +335,7 @@ public class CalendarDay {
 		FlowPane flow = new FlowPane();
 		flow.setPadding(new Insets(5));
 		flow.setPrefWidth(330);
-		
+		sum.setTextFill(javafx.scene.paint.Color.BLACK);
 		sum.setMaxWidth(330);
 		sum.setText(date);
 		flow.getChildren().add(sum);
@@ -292,6 +344,7 @@ public class CalendarDay {
     
     public static void LabelChange()
     {
+    	sum.setTextFill(javafx.scene.paint.Color.BLACK);
     	sum.setText(date);
     }
     
